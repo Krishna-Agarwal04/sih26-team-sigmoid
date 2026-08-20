@@ -4,6 +4,8 @@
 
 Build this standalone. You do not need the main repo and you will not touch its code.
 
+> **Using an AI coding agent?** Read [BRIEF-1-AGENT-SPEC.md](./BRIEF-1-AGENT-SPEC.md) alongside this. It is the executable version: exact files, exact signatures, the full extraction prompt, and a verification gate after every step. This file explains the why; that one is what you hand the agent.
+
 ---
 
 ## 1. What you are building

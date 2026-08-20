@@ -10,6 +10,7 @@ Five independent build briefs. One person per brief. Hand out one file each.
 |---|---|---|---|
 | *(me)* | Map navigation: location tracking, geofencing, the Threshold Crossing | - | - |
 | 1 | Discovery engine - archival page to pins on a map | 2-3 days | highest |
+| 1a | [Agent build spec](./BRIEF-1-AGENT-SPEC.md) for brief 1 - hand this to a coding agent | - | - |
 | 2 | Authority dashboard - the candidate review queue | 1.5-2 days | medium, most database |
 | 3 | Route planner - interests and time to an ordered walk | 1-1.5 days | medium, most algorithm |
 | 4 | Narration system - audio, transcript, personas, grounded Q&A | 2 days | medium, most content |
