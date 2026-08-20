@@ -10,7 +10,7 @@ Build this standalone. You do not need the main repo and you will not touch its 
 
 ## 1. What you are building
 
-A screen that takes one page of a real 1916 archaeological survey and turns it into pins on a modern map.
+A screen that takes one page of a real 1919 archaeological survey and turns it into pins on a modern map.
 
 The Archaeological Survey of India published a monument by monument survey of Delhi between 1916 and 1922. It records roughly 1,300 structures. Each entry describes what the structure is and, in period prose, where it stands: *"a ruined serai about 200 yards north of the old road"*. Today only about 174 Delhi monuments are centrally protected. The rest are in that book and nowhere else.
 
@@ -33,13 +33,26 @@ Get a free Gemini API key at aistudio.google.com. Put it in `.env.local` as `GEM
 
 Get your source pages:
 
-```bash
-# page text (whole volume, one file, about 400KB)
-curl -o vol1.txt "https://archive.org/download/in.ernet.dli.2015.70478/2015.70478.List-Of-Muhammadan-And-Hindu-Monuments-Vol1_djvu.txt"
+Use **Volume 2 (1919)**, not Volume 1. Volume 1 covers the walled city and locates a structure by naming the muhalla it stands in, so it holds one bearing-and-distance clue in 231 pages. Volume 2 covers the outlying areas, where the surveyor had to measure, and holds 213 across 127 pages. Those measured clues are the whole input to your resolver.
 
-# a page image (n40 = the 41st scanned image, 0-indexed)
-curl -o public/pages/n40.jpg "https://archive.org/download/in.ernet.dli.2015.70478/page/n40_w800.jpg"
+```bash
+# per-page text. use the XML, not _djvu.txt
+curl -o vol2.xml "https://archive.org/download/in.ernet.dli.2015.69530/2015.69530.List-Of-Muhammadan-And-Hindu-Monuments-Vol2_djvu.xml"
+
+# a page image (n58 = the 59th scanned image, 0-indexed)
+curl -o public/pages/n58.jpg "https://archive.org/download/in.ernet.dli.2015.69530/page/n58_w800.jpg"
 ```
+
+**`_djvu.txt` has no page separators**, so you cannot slice it per page. `_djvu.xml` has one `<OBJECT>` per scanned page in image order, and its `usemap="..._0058.djvu"` number is the same N as the image URL. Join the `<WORD>` contents inside each `<LINE>` to rebuild a page.
+
+This is what a page of Volume 2 actually gives you:
+
+```
+No. 52. (a) Mosque (nameless).
+(b) Some 170 yards to the east of No. 51.
+```
+
+The `(b)` field is the Spatial Clue. Note that many of them measure from another numbered entry rather than a named landmark, so they resolve against no Anchor and must be shown as unresolvable with their passage.
 
 Download about 20 pages once and commit them. **Never fetch archive.org at runtime.**
 

@@ -12,7 +12,7 @@ The first thing a judge sees, and the screen that connects the two halves of the
 
 Three pieces: a landing page that says what this is in one breath, a Delhi-wide map of heritage sites, and a Hidden Heritage panel that surfaces the places almost nobody visits and says why they are worth it.
 
-That last one is the bridge. One half of our project reads century-old survey documents and surfaces monuments missing from today's maps. The other half walks a visitor around a site and lets each structure speak. **Your panel is where those two meet.** Without it we have two products in one demo. With it we have one system, and the sentence "this place is on your map because we found it in a 1916 survey an hour ago" becomes possible.
+That last one is the bridge. One half of our project reads century-old survey documents and surfaces monuments missing from today's maps. The other half walks a visitor around a site and lets each structure speak. **Your panel is where those two meet.** Without it we have two products in one demo. With it we have one system, and the sentence "this place is on your map because we found it in a 1919 survey an hour ago" becomes possible.
 
 You also own the visual identity. If this looks like every other hackathon dashboard, the project loses something it cannot get back.
 
@@ -58,7 +58,7 @@ export interface HiddenEntry {
   name: string;
   distanceM: number;
   representationScore: number;
-  evidence: string;              // "Zafar Hasan Vol. 1, p. 87 - not in the modern baseline"
+  evidence: string;              // "Zafar Hasan Vol. 2, p. 40 - not in the modern baseline"
   origin: 'site' | 'candidate';  // did this come from our seed data or the pipeline?
   status?: CandidateStatus;      // only when origin === 'candidate'
   centroid: [number, number];    // [lng, lat]
@@ -189,7 +189,7 @@ Each entry shows name, distance, and **its evidence line**. That last part is no
 
 ```
   RUINED SERAI                                   1.2 km
-  Recorded in Zafar Hasan Vol. 1, p. 87
+  Recorded in Zafar Hasan Vol. 2, p. 40
   Not present in the modern baseline
   [ candidate ]
 ```
@@ -267,7 +267,7 @@ export const SITES: HeritageSite[] = [
 
 export const HIDDEN_FIXTURE: HiddenEntry[] = [
   { id:'c_87_1', name:'Ruined serai', distanceM:1200, representationScore:0.0,
-    evidence:'Zafar Hasan Vol. 1, p. 87 - not present in the modern baseline',
+    evidence:'Zafar Hasan Vol. 2, p. 40 - not present in the modern baseline',
     origin:'candidate', status:'verified', centroid:[77.2455,28.6410] },
   { id:'satpula', name:'Satpula', distanceM:8400, representationScore:0.12,
     evidence:'Tughlaq water dam, unlisted on major tourism platforms',
@@ -422,7 +422,7 @@ And two by hand: block `basemaps.cartocdn.com` in devtools and confirm markers s
 
 A judge will ask, in some form: **"How is this different from Google Maps?"**
 
-The Hidden Heritage panel is the answer, and it has to be visible rather than explained. Google Maps shows you what is already mapped. Every entry in your panel carries a line saying where the record of it came from and that today's map does not have it. One of them was surfaced from a 1916 document by our own pipeline an hour earlier.
+The Hidden Heritage panel is the answer, and it has to be visible rather than explained. Google Maps shows you what is already mapped. Every entry in your panel carries a line saying where the record of it came from and that today's map does not have it. One of them was surfaced from a 1919 document by our own pipeline an hour earlier.
 
 That is a different kind of object from a search result, and the evidence line is what makes it obvious without a word from you.
 

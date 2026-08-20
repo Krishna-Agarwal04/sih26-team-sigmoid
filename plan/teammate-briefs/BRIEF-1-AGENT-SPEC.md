@@ -156,17 +156,29 @@ Nothing else anywhere in the codebase may reorder a coordinate pair. If pins lan
 
 ## Step 3. Ingest the Volume
 
-Source: Archaeological Survey of India, *List of Muhammadan and Hindu Monuments, Delhi Province*, Vol. 1 (1916). Public domain. Internet Archive id `in.ernet.dli.2015.70478`, 231 pages.
+Source: Archaeological Survey of India, *List of Muhammadan and Hindu Monuments, Delhi Province*, **Vol. 2 (1919)**. Public domain. Internet Archive id `in.ernet.dli.2015.69530`, 334 pages.
+
+**Use Volume 2, not Volume 1.** Volume 1 covers the walled city, where the survey locates a structure by naming the muhalla it stands in, and it contains one bearing-and-distance clue in 231 pages. Volume 2 covers the outlying areas, where the surveyor had to measure, and contains 213 across 127 pages. Those measured clues are the whole input to your resolver.
 
 Write `scripts/ingest.ts` to run **once** and commit its output. It must:
 
-1. Download the OCR text layer:
-   `https://archive.org/download/in.ernet.dli.2015.70478/2015.70478.List-Of-Muhammadan-And-Hindu-Monuments-Vol1_djvu.txt`
-2. Split it into pages. The djvu text uses form feed (`\f`) as a page separator. If that fails, fall back to splitting on the page-number headers and log which method was used.
-3. Pick **20 pages** with the highest density of spatial language. Score a page by counting matches of `/\b(north|south|east|west|yards|miles|kos|gaz|paces|adjoining|opposite|near|situated)\b/gi` and take the top 20.
-4. For each chosen page N, download the scan:
-   `https://archive.org/download/in.ernet.dli.2015.70478/page/n{N}_w800.jpg` into `public/pages/n{N}.jpg`
-5. Write `content/pages.ts` exporting `PAGES: { pageNo: number; text: string; imageUrl: string }[]`.
+1. Download the OCR text layer, **the XML one**:
+   `https://archive.org/download/in.ernet.dli.2015.69530/2015.69530.List-Of-Muhammadan-And-Hindu-Monuments-Vol2_djvu.xml`
+
+   **Do not use `_djvu.txt`.** It has no page separators at all, no form feeds, nothing, so it cannot be split per page. `_djvu.xml` has one `<OBJECT>` element per scanned page in image order, and each carries a `usemap="..._0042.djvu"` attribute whose number is the same N as the image URL. Rebuild a page's text by joining the `<WORD>` contents inside each `<LINE>`.
+2. Pick **20 pages** with the highest density of spatial language. Count matches of a distance pattern (a number followed by yards, miles, kos, gaz, paces or furlongs) at weight 3, plus bare compass words at weight 1, and take the top 20. Weighting distances above compass words matters, because plenty of pages say "north" while describing a wall.
+3. For each chosen page N, download the scan:
+   `https://archive.org/download/in.ernet.dli.2015.69530/page/n{N}_w800.jpg` into `public/pages/n{N}.jpg`
+4. Write `content/pages.ts` exporting `PAGES: { pageNo: number; text: string; imageUrl: string }[]`.
+
+A real clue from this volume, so you know what you are aiming at:
+
+```
+No. 52. (a) Mosque (nameless).
+(b) Some 170 yards to the east of No. 51.
+```
+
+Many entries measure from another numbered entry rather than from a named landmark. Those have no Anchor and **must be shown as unresolvable with their passage**, never given a guessed coordinate.
 
 Rate limit: sleep 500ms between archive.org requests. Be a good citizen.
 
@@ -189,7 +201,7 @@ Create `content/anchors.ts` exporting `ANCHORS: Anchor[]`, about 60 Delhi landma
 | A village or locality (Mehrauli, Nizamuddin) | 400 to 900 | Pins a neighbourhood |
 | A road or a vague direction ("the old northern road") | 1200 to 2000 | Barely pins anything |
 
-`aliases` carries the spellings the 1916 volume uses that no longer exist. Add them as you find them while reading pages. Match is case-insensitive across `name` and `aliases`.
+`aliases` carries the spellings the volume uses that no longer exist. Add them as you find them while reading pages. Match is case-insensitive across `name` and `aliases`.
 
 Seed anchor, verified:
 
@@ -387,7 +399,7 @@ export const ExtractionSchema = z.object({ mentions: z.array(MentionSchema) });
 
 ```
 You are reading one page of "List of Muhammadan and Hindu Monuments, Delhi
-Province" (Archaeological Survey of India, 1916). It is a catalogue of
+Province" (Archaeological Survey of India, 1916 to 1922). It is a catalogue of
 structures in and around Delhi.
 
 Extract every distinct structure the page describes.
