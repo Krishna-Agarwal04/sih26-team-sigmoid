@@ -17,7 +17,7 @@ export function useSimLocation(start: Coord, startHeadingDeg: number) {
     lat: start[1],
     headingDeg: startHeadingDeg,
     accuracyM: 1,
-    t: 0,
+    t: Date.now(),
     source: "sim",
   });
   const [walking, setWalking] = useState(false);

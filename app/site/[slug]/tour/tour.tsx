@@ -35,11 +35,13 @@ export default function Tour({
   const engine = useRef(initialState());
   const [statuses, setStatuses] = useState<TriggerStatus[]>([]);
   const [selected, setSelected] = useState<HeritagePoint>(points[0]);
+  // what is being said, which is not the same as what the panel is showing
+  const [speakingId, setSpeakingId] = useState<string | null>(null);
   const [showEvidence, setShowEvidence] = useState(false);
   const [started, setStarted] = useState(false);
 
   const audio = useRef<HTMLAudioElement>(null);
-  const narration = narrations.find((n) => n.pointId === selected.id);
+  const narration = narrations.find((n) => n.pointId === (speakingId ?? selected.id));
   const factSheet = factSheets.find((f) => f.pointId === selected.id);
 
   useEffect(() => {
@@ -47,15 +49,26 @@ export default function Tour({
     engine.current = result.state;
     setStatuses(result.statuses);
 
+    // a Narration runs until the Visitor walks out of that Heritage Point's ring
+    if (speakingId && !result.statuses.find((s) => s.pointId === speakingId)?.inRing) {
+      audio.current?.pause();
+      setSpeakingId(null);
+    }
+
     const crossing = result.crossings[0];
     if (!crossing || !started) return;
     const point = points.find((p) => p.id === crossing.pointId);
     if (!point) return;
     setSelected(point);
+    setSpeakingId(point.id);
     setShowEvidence(false);
-    // the src swap has to land before play, and the element is already unlocked by Begin tour
-    setTimeout(() => audio.current?.play(), 0);
-  }, [fix, prepared, points, started]);
+  }, [fix, prepared, points, started, speakingId]);
+
+  // the element reloads when src changes, so playback can only start after that has landed
+  useEffect(() => {
+    if (speakingId === null) return;
+    audio.current?.play().catch(() => undefined);
+  }, [speakingId, narration?.audioUrl]);
 
   function beginTour() {
     setStarted(true);
@@ -127,6 +140,7 @@ export default function Tour({
               type="button"
               onClick={() => {
                 setSelected(point);
+                setSpeakingId(null);
                 setShowEvidence(false);
               }}
               className={`border px-3 py-1.5 text-sm ${
