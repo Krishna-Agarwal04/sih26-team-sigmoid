@@ -32,14 +32,15 @@ The two connect: a verified Candidate from the archive becomes a place a visitor
 
 ## Who is building what
 
-| Brief | Feature | Time |
+| Brief | Feature | Owner |
 |---|---|---|
 | core | Map navigation, location tracking, geofencing, the Threshold Crossing | Rehaan |
-| [1](./plan/teammate-briefs/BRIEF-1-discovery-engine.md) | Discovery engine: archival page to pins on a map | 2 to 3 days |
-| [2](./plan/teammate-briefs/BRIEF-2-authority-dashboard.md) | Authority dashboard: the Candidate review queue | 1.5 to 2 days |
-| [3](./plan/teammate-briefs/BRIEF-3-route-planner.md) | Route planner: interests and time to an ordered walk | 1 to 1.5 days |
-| [4](./plan/teammate-briefs/BRIEF-4-narration-system.md) | Narration: audio, transcript, personas, grounded Q&A | 2 days |
-| [5](./plan/teammate-briefs/BRIEF-5-explore-and-hidden-heritage.md) | Explore, Hidden Heritage, landing page | 1.5 to 2 days |
+| [1](./plan/teammate-briefs/BRIEF-1-discovery-engine.md) | Discovery engine: archival page to pins on a map | Shantanu |
+| [2](./plan/teammate-briefs/BRIEF-2-authority-dashboard.md) | Authority dashboard: the Candidate review queue | Lakshita |
+| [3](./plan/teammate-briefs/BRIEF-3-route-planner.md) | Route planner: interests and time to an ordered walk | Ananya |
+| [4](./plan/teammate-briefs/BRIEF-4-narration-system.md) | Narration: audio, transcript, personas, grounded Q&A | Krishna |
+| [5](./plan/teammate-briefs/BRIEF-5-explore-and-hidden-heritage.md) | Explore, Hidden Heritage, landing page | vishnu
+ |
 
 Each brief is standalone. Build it as your own Next.js app with `create-next-app`. You do not need this repo to build, and nothing you write can break it.
 
