@@ -37,6 +37,12 @@ export interface Fix {
   source: LocationSource;
 }
 
+export interface ThresholdCrossing {
+  pointId: string;
+  kind: NarrationKind;
+  t: number;
+}
+
 export interface LivingTradition {
   name: string;
   text: string;
