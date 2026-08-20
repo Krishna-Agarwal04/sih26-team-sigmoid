@@ -59,3 +59,19 @@ body::after {
   outline: 2px solid var(--color-madder);
   outline-offset: 2px;
 }
+
+/* only the tiles get aged, or the markers and polygons get aged with them */
+.leaflet-tile-pane {
+  filter: sepia(0.38) saturate(0.75) contrast(1.06);
+}
+
+.leaflet-container {
+  font-family: var(--font-ui);
+  background: var(--color-paper-sunk);
+}
+
+.leaflet-control-attribution {
+  background: rgba(250, 246, 238, 0.85) !important;
+  color: var(--color-ink-muted);
+  font-size: 10px;
+}

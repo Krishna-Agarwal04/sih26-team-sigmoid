@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { Cormorant_Garamond, IBM_Plex_Mono, IBM_Plex_Sans, Noto_Serif_Devanagari } from "next/font/google";
 import "./globals.css";
 
@@ -38,7 +39,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="en"
       className={`${cormorant.variable} ${plexSans.variable} ${plexMono.variable} ${notoDeva.variable}`}
     >
-      <body>{children}</body>
+      <body className="flex min-h-screen flex-col">
+        <header className="flex h-14 shrink-0 items-center justify-between border-b border-ink-faint/40 px-6">
+          <Link href="/" className="font-display text-xl tracking-wide text-ink">
+            THRESHOLD
+          </Link>
+          <nav className="flex gap-6 text-sm text-ink-muted">
+            <Link href="/explore" className="hover:text-madder">
+              Explore
+            </Link>
+          </nav>
+        </header>
+        <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+      </body>
     </html>
   );
 }

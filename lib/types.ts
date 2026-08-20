@@ -62,6 +62,8 @@ export interface HeritageSite {
   blurb: string;
   // 0..1, low means under-represented, drives Hidden Heritage
   representationScore: number;
+  // "osm:w264863907" where a mapped feature confirms it, "approximate" where nothing does
+  coordSource: string;
 }
 
 export interface HeritagePoint {
@@ -108,6 +110,9 @@ export interface Narration {
   cues: number[];
   factSheetId: string;
 }
+
+// what a writer authors. render-audio.ts supplies the rest of a Narration.
+export type NarrationText = Omit<Narration, "audioUrl" | "durationSec" | "cues">;
 
 export interface Anchor {
   id: string;
