@@ -1,74 +1,80 @@
 {
   "red-fort/diwan-i-aam/history.en.approach": {
     "audioUrl": "/audio/red-fort/diwan-i-aam/history.en.approach.mp3",
-    "durationSec": 55.387,
+    "durationSec": 42.161,
     "sentences": [
-      "You are standing in front of the Hall of Public Audience.",
-      "Shah Jahan finished it in 1648 and held his first darbar here soon after.",
-      "The hall is eighty feet long and forty feet deep, all of it red sandstone, and it once carried gilding and painted stucco that has long since gone.",
-      "Three aisles of seven bays each, and every bay is four columns holding an engrailed arch.",
-      "In the middle of the far wall there is a recess about twenty one feet across, raised above the floor, and that is where the Emperor sat.",
-      "The lawn in front of you stands in for a courtyard five hundred and sixty feet long.",
-      "The shrubberies at its edges mark where the arcades ran, and every morning those arcades were full of men waiting to be seen."
+      "You are standing in front of the Diwan-i-Aam, the hall of public audience.",
+      "Shah Jahan finished it in 1648 and held his first court here soon after.",
+      "It is built entirely of red sandstone, and it was once covered in gilding and painted plaster, all of which is gone.",
+      "Inside, four columns carry each arch, in seven bays across three aisles.",
+      "In the middle of the far wall there is a recess raised above the floor.",
+      "That is where the Emperor sat.",
+      "The lawn in front of you stands in for a courtyard that ran five hundred and sixty feet.",
+      "The shrubberies mark where the arcades used to be, and every morning they were full of men waiting to be seen."
     ],
     "cues": [
       0.1,
-      4.375,
-      11.425,
-      22.562,
-      30.125,
-      39.712,
-      45.9
+      4.65,
+      10.444,
+      17.966,
+      23.273,
+      27.552,
+      29.978,
+      35.423
     ],
     "voice": "en-IN-PrabhatNeural",
-    "textHash": "c3514b2d3e9d5034"
+    "textHash": "2573afa8afec34d9"
   },
   "red-fort/rang-mahal/history.en.approach": {
     "audioUrl": "/audio/red-fort/rang-mahal/history.en.approach.mp3",
-    "durationSec": 53.675,
+    "durationSec": 44.036,
     "sentences": [
       "This is the Rang Mahal, the painted palace.",
       "It is named for the colour that once covered the inside of these walls, and almost none of it is left.",
-      "In the time of Shah Jahan it was called the Imtiyaz Mahal, the palace of distinction, and it was the largest apartment of the imperial household.",
-      "A marble channel runs the length of the floor, and at its centre sits a basin cut from a single block of Makrana marble, ten feet by nine.",
-      "The ceiling was silver first, then copper, then wood, each replacement a smaller claim than the one before.",
+      "Shah Jahan knew it as the Imtiyaz Mahal, the palace of distinction, and it was the largest apartment in the imperial household.",
+      "A marble channel runs the length of the floor, and at its centre sits a basin cut from a single block of Makrana marble.",
+      "The ceiling was silver first, then copper, then wood.",
+      "Each replacement was a smaller claim than the one before.",
       "Behind you, between this hall and the back of the Diwan-i-Aam, there was a walled garden with a tank at its centre.",
       "It lay buried until 1911, when it was uncovered again."
     ],
     "cues": [
       0.1,
-      3.687,
-      11.437,
-      21.575,
-      31.762,
-      40,
-      48.187
+      3.125,
+      9.692,
+      17.531,
+      24.862,
+      28.665,
+      32.447,
+      39.385
     ],
     "voice": "en-IN-PrabhatNeural",
-    "textHash": "9b3dbdccba9dd540"
+    "textHash": "818891867f98fa54"
   },
   "red-fort/diwan-i-khas/history.en.approach": {
     "audioUrl": "/audio/red-fort/diwan-i-khas/history.en.approach.mp3",
-    "durationSec": 50.3,
+    "durationSec": 42.669,
     "sentences": [
-      "The Hall of Private Audience.",
-      "Ninety feet by sixty seven, on a plinth four and a half feet high, and by one nineteenth century judgement the most heavily ornamented thing Shah Jahan ever built.",
-      "The lower parts of these piers are inlaid with coloured stone, each piece cut to fit a socket chiselled out of the marble.",
-      "The upper parts were gilded and painted.",
-      "Down the centre of the floor runs a marble channel twelve feet wide, called the Nahr-i-Bihisht, the stream of paradise.",
-      "On the dais in this room stood the peacock throne, until Nadir Shah carried it away to Persia in 1739.",
-      "He took the submission of the Mughal Emperor in this room first, and the throne afterwards."
+      "This is the Diwan-i-Khas, the hall of private audience.",
+      "Shah Jahan finished it in 1648, and a nineteenth century surveyor called it the most highly ornamented building he ever put up.",
+      "Look at the lower part of the piers.",
+      "Every piece of coloured stone in them was cut to fit a socket chiselled out of the marble.",
+      "Higher up, the arches were gilded and painted.",
+      "The marble channel running down the centre of the floor was called the Nahr-i-Bihisht, the stream of paradise.",
+      "The peacock throne stood on the dais in this room until 1739, when Nadir Shah carried it away to Persia.",
+      "He accepted the surrender of the Mughal Emperor here first, and took the throne afterwards."
     ],
     "cues": [
       0.1,
-      2.625,
-      14.425,
-      23.1,
-      26.7,
-      35.15,
-      43.85
+      3.75,
+      12.213,
+      14.872,
+      20.233,
+      23.686,
+      29.83,
+      37.065
     ],
     "voice": "en-IN-PrabhatNeural",
-    "textHash": "e21f568cdf0ff829"
+    "textHash": "f9f92928ae991f17"
   }
 }

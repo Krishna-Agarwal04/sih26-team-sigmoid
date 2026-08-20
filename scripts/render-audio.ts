@@ -9,6 +9,9 @@ import type { NarrationText } from "../lib/types";
 
 const run = promisify(execFile);
 
+// the default read is slow for a walking tour, so nudge it up
+const RATE = "+18%";
+
 const VOICES: Record<string, string> = {
   "history.en": "en-IN-PrabhatNeural",
   "architecture.en": "en-IN-PrabhatNeural",
@@ -74,6 +77,7 @@ async function main() {
       "-m", "edge_tts",
       "-v", voice,
       "-t", text,
+      "--rate", RATE,
       "--write-media", mp3,
       "--write-subtitles", vtt,
     ]);
