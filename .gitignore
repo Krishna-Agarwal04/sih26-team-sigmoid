@@ -1,0 +1,72 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/versions
+
+# next.js
+.next/
+out/
+build/
+dist/
+next-env.d.ts
+*.tsbuildinfo
+
+# environment - never commit these
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel/
+
+# testing
+coverage/
+.nyc_output/
+
+# supabase
+.branches
+.temp
+supabase/.temp/
+
+# generated media - rendered by scripts, not hand-authored
+# (audio is committed deliberately; raw source material is not)
+/public/pages/raw/
+/scratch/
+*.jp2
+*.zip
+vol*.txt
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# editors
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# os
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------------
+# Local planning documents. Deliberately not published.
+# The team-facing documents in plan/teammate-briefs/ ARE published, because
+# teammates work from them and we update them in place.
+# ---------------------------------------------------------------------------
+/plan/0*.md
+/plan/schema.sql
+/plan/problem-statement.md
+/docs/adr/
+/scripts/make-brief-pdf.py
+/CLAUDE.md
