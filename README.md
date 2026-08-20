@@ -39,8 +39,7 @@ The two connect: a verified Candidate from the archive becomes a place a visitor
 | [2](./plan/teammate-briefs/BRIEF-2-authority-dashboard.md) | Authority dashboard: the Candidate review queue | Lakshita |
 | [3](./plan/teammate-briefs/BRIEF-3-route-planner.md) | Route planner: interests and time to an ordered walk | Ananya |
 | [4](./plan/teammate-briefs/BRIEF-4-narration-system.md) | Narration: audio, transcript, personas, grounded Q&A | Krishna |
-| [5](./plan/teammate-briefs/BRIEF-5-explore-and-hidden-heritage.md) | Explore, Hidden Heritage, landing page | vishnu
- |
+| [5](./plan/teammate-briefs/BRIEF-5-explore-and-hidden-heritage.md) | Explore, Hidden Heritage, landing page | Vishnu |
 
 Each brief is standalone. Build it as your own Next.js app with `create-next-app`. You do not need this repo to build, and nothing you write can break it.
 
