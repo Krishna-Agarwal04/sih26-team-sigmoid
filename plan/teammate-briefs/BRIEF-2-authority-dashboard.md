@@ -355,8 +355,8 @@ Your work goes into the main repo under `contrib/`, where it is excluded from th
 
 ```bash
 # 1. fork and clone the main repo
-gh repo fork <MAIN_REPO_URL> --clone
-cd threshold
+gh repo fork https://github.com/RAK2315/sih26-team-sigmoid --clone
+cd sih26-team-sigmoid
 
 # 2. branch
 git checkout -b brief-2-authority-<yourname>

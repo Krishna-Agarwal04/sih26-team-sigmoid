@@ -54,11 +54,12 @@ Heritage Site, Heritage Point, Zone, Approach Ring, Threshold Crossing, Facing, 
 Every brief ends with the exact commands. The short version:
 
 ```bash
-gh repo fork <MAIN_REPO_URL> --clone
-cd threshold
+gh repo fork https://github.com/RAK2315/sih26-team-sigmoid --clone
+cd sih26-team-sigmoid
 git checkout -b brief-N-<name>-<yourname>
 mkdir -p contrib/brief-N-<name>-<yourname>
 # copy your app in, then
+git diff --staged | grep -iE "api[_-]?key|secret|token"   # must print nothing
 git add contrib/ && git commit -m "contrib: ..." && git push -u origin HEAD
 gh pr create --fill
 ```
