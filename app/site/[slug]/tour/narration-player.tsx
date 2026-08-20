@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState, type RefObject } from "react";
 import type { Narration } from "@/lib/types";
 
 function currentSentence(cues: number[], t: number): number {
@@ -11,16 +11,35 @@ function currentSentence(cues: number[], t: number): number {
   return index;
 }
 
-export default function NarrationPlayer({ narration }: { narration: Narration }) {
-  const audio = useRef<HTMLAudioElement>(null);
+export default function NarrationPlayer({
+  narration,
+  audio,
+}: {
+  narration: Narration;
+  audio: RefObject<HTMLAudioElement | null>;
+}) {
   const [playing, setPlaying] = useState(false);
   const [spoken, setSpoken] = useState(0);
 
-  // a new Heritage Point means a new clip, so the old position must not carry over
   useEffect(() => {
-    setSpoken(0);
-    setPlaying(false);
-  }, [narration.audioUrl]);
+    const element = audio.current;
+    if (!element) return;
+    const onTime = () => setSpoken(currentSentence(narration.cues, element.currentTime));
+    const onPlay = () => setPlaying(true);
+    const onStop = () => setPlaying(false);
+    element.addEventListener("timeupdate", onTime);
+    element.addEventListener("play", onPlay);
+    element.addEventListener("pause", onStop);
+    element.addEventListener("ended", onStop);
+    return () => {
+      element.removeEventListener("timeupdate", onTime);
+      element.removeEventListener("play", onPlay);
+      element.removeEventListener("pause", onStop);
+      element.removeEventListener("ended", onStop);
+    };
+  }, [audio, narration.cues]);
+
+  useEffect(() => setSpoken(0), [narration.audioUrl]);
 
   if (narration.audioUrl === "") {
     return (
@@ -32,9 +51,9 @@ export default function NarrationPlayer({ narration }: { narration: Narration })
           This Narration has been written but not yet rendered to audio.
         </p>
         <div className="mt-3 space-y-2">
-          {narration.sentences.map((s, i) => (
+          {narration.sentences.map((sentence, i) => (
             <p key={i} className="text-sm leading-relaxed text-ink">
-              {s}
+              {sentence}
             </p>
           ))}
         </div>
@@ -44,15 +63,6 @@ export default function NarrationPlayer({ narration }: { narration: Narration })
 
   return (
     <div className="border border-ink-faint/40 bg-paper-raised p-4">
-      <audio
-        ref={audio}
-        src={narration.audioUrl}
-        onTimeUpdate={(e) => setSpoken(currentSentence(narration.cues, e.currentTarget.currentTime))}
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
-        onEnded={() => setPlaying(false)}
-      />
-
       <div className="flex items-center gap-3">
         <button
           type="button"

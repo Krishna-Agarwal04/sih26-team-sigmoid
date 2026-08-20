@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import NarrationPlayer from "./narration-player";
-import type { FactSheet, HeritagePoint, HeritageSite, Narration } from "@/lib/types";
+import TriggerPanel from "./trigger-panel";
+import { useSimLocation } from "./use-sim-location";
+import { TRIGGER_CONFIG } from "@/lib/location/config";
+import { initialState, prepare, step, type TriggerStatus } from "@/lib/location/engine";
+import { moveBy } from "@/lib/location/geometry";
+import type { Coord, FactSheet, HeritagePoint, HeritageSite, Narration } from "@/lib/types";
 
 // leaflet reads window while it loads, so it must never render on the server
 const TourMapCanvas = dynamic(() => import("./tour-map-canvas"), {
@@ -22,28 +27,98 @@ export default function Tour({
   narrations: Narration[];
   factSheets: FactSheet[];
 }) {
+  const prepared = useMemo(() => prepare(points, TRIGGER_CONFIG), [points]);
+  // start south of the first Heritage Point, outside its ring, looking at it
+  const start = useMemo<Coord>(() => moveBy(points[0].centroid, 70, 180), [points]);
+
+  const { fix, moveTo, walking, setWalking, speedMs, setSpeedMs } = useSimLocation(start, 0);
+  const engine = useRef(initialState());
+  const [statuses, setStatuses] = useState<TriggerStatus[]>([]);
   const [selected, setSelected] = useState<HeritagePoint>(points[0]);
   const [showEvidence, setShowEvidence] = useState(false);
+  const [started, setStarted] = useState(false);
 
+  const audio = useRef<HTMLAudioElement>(null);
   const narration = narrations.find((n) => n.pointId === selected.id);
   const factSheet = factSheets.find((f) => f.pointId === selected.id);
 
+  useEffect(() => {
+    const result = step(engine.current, fix, prepared, TRIGGER_CONFIG);
+    engine.current = result.state;
+    setStatuses(result.statuses);
+
+    const crossing = result.crossings[0];
+    if (!crossing || !started) return;
+    const point = points.find((p) => p.id === crossing.pointId);
+    if (!point) return;
+    setSelected(point);
+    setShowEvidence(false);
+    // the src swap has to land before play, and the element is already unlocked by Begin tour
+    setTimeout(() => audio.current?.play(), 0);
+  }, [fix, prepared, points, started]);
+
+  function beginTour() {
+    setStarted(true);
+    // browsers only allow programmatic playback after a real gesture has played this element
+    const element = audio.current;
+    if (!element) return;
+    void element
+      .play()
+      .then(() => {
+        element.pause();
+        element.currentTime = 0;
+      })
+      .catch(() => undefined);
+  }
+
   return (
-    <div className="flex min-h-0 flex-1 flex-col lg:flex-row">
+    <div className="relative flex min-h-0 flex-1 flex-col lg:flex-row">
+      <audio ref={audio} src={narration?.audioUrl} preload="auto" />
+
       <div className="h-72 shrink-0 lg:h-auto lg:min-h-0 lg:flex-1">
         <TourMapCanvas
           site={site}
           points={points}
+          prepared={prepared}
+          statuses={statuses}
+          fix={fix}
           selectedId={selected.id}
           onSelect={(p) => {
             setSelected(p);
             setShowEvidence(false);
           }}
+          onMoveVisitor={moveTo}
         />
       </div>
 
       <aside className="flex min-h-0 w-full shrink-0 flex-col overflow-y-auto border-t border-ink-faint/40 bg-paper p-4 lg:w-[26rem] lg:border-t-0 lg:border-l">
-        <p className="font-archive text-xs tracking-widest text-ink-faint uppercase">{site.name}</p>
+        <div className="flex items-baseline justify-between">
+          <p className="font-archive text-xs tracking-widest text-ink-faint uppercase">
+            {site.name}
+          </p>
+          {started && (
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setWalking(!walking)}
+                className="border border-ink-faint/50 px-2 py-1 font-archive text-xs text-ink-muted hover:border-madder hover:text-madder"
+              >
+                {walking ? "Stop" : "Walk"}
+              </button>
+              <input
+                type="range"
+                min={0.4}
+                max={3}
+                step={0.2}
+                value={speedMs}
+                onChange={(e) => setSpeedMs(Number(e.target.value))}
+                className="w-20 accent-madder"
+                aria-label="Walking speed"
+              />
+              <span className="font-archive text-xs text-ink-faint">{speedMs.toFixed(1)} m/s</span>
+            </div>
+          )}
+        </div>
 
         <div className="mt-3 flex flex-wrap gap-2">
           {points.map((point) => (
@@ -71,8 +146,12 @@ export default function Tour({
         )}
 
         <div className="mt-4">
+          <TriggerPanel points={points} statuses={statuses} />
+        </div>
+
+        <div className="mt-4">
           {narration ? (
-            <NarrationPlayer narration={narration} />
+            <NarrationPlayer narration={narration} audio={audio} />
           ) : (
             <p className="border border-ink-faint/40 bg-paper-raised p-4 text-sm text-ink-muted">
               No Narration written for this Heritage Point yet.
@@ -119,6 +198,29 @@ export default function Tour({
           Zone footprints from OpenStreetMap, ODbL. Narration read by en-IN-PrabhatNeural.
         </p>
       </aside>
+
+      {!started && (
+        <div className="absolute inset-0 z-[600] flex items-center justify-center bg-paper/80 backdrop-blur-[1px]">
+          <div className="max-w-md border border-ink-faint/40 bg-paper-raised p-6 text-center shadow-paper">
+            <h2 className="font-display text-3xl text-ink">{site.name}</h2>
+            <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+              Drag yourself around the map, or use the arrow keys to turn and step. When you are
+              close to a structure, facing it, and have stood still for{" "}
+              {TRIGGER_CONFIG.dwellMs / 1000} seconds, it will start speaking.
+            </p>
+            <button
+              type="button"
+              onClick={beginTour}
+              className="mt-5 border border-madder px-6 py-2 text-madder hover:bg-madder hover:text-paper"
+            >
+              Begin tour
+            </button>
+            <p className="font-archive mt-3 text-xs text-ink-faint">
+              This button also unlocks audio, which browsers block until you ask for it.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

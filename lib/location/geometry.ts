@@ -1,4 +1,4 @@
-import { bearing, booleanPointInPolygon, buffer, distance, polygon as polygonFeature } from "@turf/turf";
+import { bearing, booleanPointInPolygon, buffer, destination, distance, polygon as polygonFeature } from "@turf/turf";
 import type { Coord } from "@/lib/types";
 
 // leaflet wants lat,lng and everything else here is lng,lat. this is the only place that flips
@@ -34,4 +34,21 @@ export function headingOffBy(headingDeg: number, targetBearingDeg: number): numb
 
 export function metresBetween(from: Coord, to: Coord): number {
   return distance(from, to, { units: "meters" });
+}
+
+// used for the Facing cone and for the Dwell ring that fills as the seconds count up
+export function sector(centre: Coord, radiusM: number, fromDeg: number, toDeg: number): GeoJSON.Polygon {
+  const steps = 24;
+  const ring: number[][] = [centre];
+  for (let i = 0; i <= steps; i++) {
+    const heading = fromDeg + ((toDeg - fromDeg) * i) / steps;
+    ring.push(destination(centre, radiusM, heading, { units: "meters" }).geometry.coordinates);
+  }
+  ring.push(centre);
+  return { type: "Polygon", coordinates: [ring] };
+}
+
+export function moveBy(from: Coord, metres: number, headingDeg: number): Coord {
+  const moved = destination(from, metres, headingDeg, { units: "meters" }).geometry.coordinates;
+  return [moved[0], moved[1]];
 }

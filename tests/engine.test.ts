@@ -11,7 +11,7 @@ const CONFIG: EngineConfig = {
   dwellMs: 3000,
   facingToleranceDeg: 60,
   approachBufferM: 25,
-  dwellDriftM: 4,
+  dwellDriftM: 1.5,
   rearmBufferM: 10,
   rearmMs: 3000,
 };
@@ -35,7 +35,7 @@ const diwanIAam = heritagePoint("red-fort/diwan-i-aam", diwanIAamZone, diwanIAam
 const SOUTH_OF_DIWAN_I_AAM: Coord = [77.242348, 28.655418];
 
 function fix(at: Coord, headingDeg: number | null, t: number): Fix {
-  return { lng: at[0], lat: at[1], headingDeg, accuracyM: 5, t, source: "sim" };
+  return { lng: at[0], lat: at[1], headingDeg, accuracyM: 1, t, source: "sim" };
 }
 
 function walk(state: EngineState, fixes: Fix[], prepared = prepare([diwanIAam], CONFIG)) {
