@@ -122,6 +122,15 @@ export const ANCHORS: Anchor[] = [
     source: "osm:w1486834964",
   },
   {
+    id: "humayun-safdar-jang-road",
+    name: "The road from Humayun's tomb to Safdar Jang",
+    aliases: ["Safdar Jang-Humayun's Tomb road", "Lodhi Road", "Lodi Road"],
+    // it runs between two Anchors already in this table, so its middle and its length follow
+    centroid: [77.230624, 28.591263],
+    precisionM: 1968,
+    source: "derived from humayuns-tomb and safdar-jang-tomb",
+  },
+  {
     id: "qadam-sharif",
     name: "Qadam Sharif",
     aliases: ["Qadam Sharif shrine", "Qadam Sharif enclosure", "Qadam Shareef"],

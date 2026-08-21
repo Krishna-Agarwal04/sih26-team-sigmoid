@@ -105,3 +105,28 @@ describe("a circle too wide to conclude anything from", () => {
     expect(checkBaseline(AT, 400, [feature("n1", "Sabz Burj", 900)]).verdict).toBe("representation_gap");
   });
 });
+
+describe("the Anchor cannot confirm itself", () => {
+  test("the feature a Candidate was measured from is not evidence that the Candidate is mapped", () => {
+    const anchorFeature = feature("w220385654", "Humayun's Tomb", 0);
+    const r = checkBaseline(AT, 300, [anchorFeature], "w220385654");
+
+    expect(r.verdict).toBe("representation_gap");
+    expect(r.match).toBeNull();
+    // it is still shown, because the reader should see it was considered and why it was set aside
+    expect(r.checked.find((n) => n.id === "w220385654")?.insideRadius).toBe(false);
+  });
+
+  test("anything else inside the radius still counts", () => {
+    const r = checkBaseline(AT, 300, [feature("w220385654", "Humayun's Tomb", 0), feature("n9", "Nila Gumbad", 120)], "w220385654");
+
+    expect(r.verdict).toBe("matched_existing");
+    expect(r.match?.id).toBe("n9");
+  });
+
+  test("with no Anchor feature named, nothing is set aside", () => {
+    const r = checkBaseline(AT, 300, [feature("w220385654", "Humayun's Tomb", 0)]);
+
+    expect(r.verdict).toBe("matched_existing");
+  });
+});

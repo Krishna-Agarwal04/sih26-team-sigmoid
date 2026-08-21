@@ -31,7 +31,10 @@ export function buildCandidates(input: CandidateInput): Candidate[] {
     if (resolved.status !== "resolved") continue;
     if (!mention.spatialClue) continue;
 
-    const baseline = checkBaseline(resolved.centroid, resolved.uncertaintyRadiusM, input.baseline);
+    const anchorFeatureId = resolved.anchor.source.startsWith("osm:")
+      ? resolved.anchor.source.slice("osm:".length)
+      : undefined;
+    const baseline = checkBaseline(resolved.centroid, resolved.uncertaintyRadiusM, input.baseline, anchorFeatureId);
     const confidence = scoreConfidence({
       clue: mention.spatialClue,
       anchorPrecisionM: resolved.anchor.precisionM,

@@ -35,12 +35,20 @@ function label(feature: BaselineFeature): string {
   return `unnamed ${historic ?? heritage ?? tourism ?? "feature"} (${feature.id})`;
 }
 
-export function checkBaseline(centroid: Coord, uncertaintyRadiusM: number, baseline: BaselineFeature[]): BaselineCheck {
+export function checkBaseline(
+  centroid: Coord,
+  uncertaintyRadiusM: number,
+  baseline: BaselineFeature[],
+  anchorFeatureId?: string,
+): BaselineCheck {
   const neighbours: BaselineNeighbour[] = baseline
     .map((feature) => {
       const at: Coord = [feature.geometry.coordinates[0], feature.geometry.coordinates[1]];
       const distanceM = metresBetween(centroid, at);
-      return { id: feature.id, name: label(feature), distanceM, insideRadius: distanceM <= uncertaintyRadiusM };
+      // the landmark a clue was measured from cannot be evidence that the clue found something.
+      // it is kept in the list so a reader sees it was considered and set aside.
+      const isAnchor = anchorFeatureId !== undefined && feature.id === anchorFeatureId;
+      return { id: feature.id, name: label(feature), distanceM, insideRadius: !isAnchor && distanceM <= uncertaintyRadiusM };
     })
     .sort((a, b) => a.distanceM - b.distanceM)
     .slice(0, NEIGHBOURS_KEPT);

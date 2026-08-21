@@ -10,6 +10,7 @@ import type { AnalyseResult } from "@/lib/types";
 //   npx tsx --env-file=.env.local scripts/build-discovery-cache.ts           every Page
 //   npx tsx --env-file=.env.local scripts/build-discovery-cache.ts missing   only the gaps
 //   npx tsx --env-file=.env.local scripts/build-discovery-cache.ts 145       one Page
+//   npx tsx scripts/build-discovery-cache.ts recompute                      no model, redo the Candidates
 
 const VOLUME_ID = "zafar-hasan-v2";
 const OUT_DIR = "content/discovery-cache";
@@ -54,6 +55,25 @@ async function main() {
 
   const arg = process.argv[2];
   const already = new Set((await readdir(OUT_DIR)).filter((f) => f.endsWith(".ts") && f !== "index.ts"));
+
+  // Candidates are a pure function of the Mentions, the Anchors and the Baseline, so a change
+  // to any of those can be applied to every cached Page without asking a model anything.
+  if (arg === "recompute") {
+    const { DISCOVERY_CACHE } = await import("@/content/discovery-cache");
+    for (const cached of Object.values(DISCOVERY_CACHE)) {
+      const candidates = buildCandidates({
+        mentions: cached.mentions,
+        anchors: ANCHORS,
+        baseline: baseline.features,
+        volumeId: VOLUME_ID,
+      });
+      await writeFile(fileFor(cached.pageNo), moduleFor({ ...cached, candidates }));
+      console.log(`p${cached.pageNo}\t${cached.candidates.length} -> ${candidates.length} placed`);
+    }
+    await writeBarrel();
+    return;
+  }
+
   let pages = volume.pages;
   if (arg === "missing") pages = pages.filter((p) => !already.has(`${VOLUME_ID}-${p.pageNo}.ts`));
   else if (arg) pages = pages.filter((p) => p.pageNo === Number(arg));
