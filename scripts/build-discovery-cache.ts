@@ -12,7 +12,7 @@ const VOLUME_ID = "zafar-hasan-v2";
 const OUT_DIR = "content/discovery-cache";
 
 // the Groq free tier allows 8000 tokens a minute and one Page costs roughly 1800
-const PAUSE_MS = 12_000;
+const PAUSE_MS = 15_000;
 
 interface Page {
   pageNo: number;

@@ -36,7 +36,9 @@ const ExtractedPage = z.object({ mentions: z.array(ExtractedMention) });
 
 const SYSTEM = `You read pages from a 1919 archaeological survey of the Delhi district and return what they record.
 
-The survey lists numbered entries. Each has lettered parts: (a) is the name, (b) is where it stands, (e) is the period, (j) is the description. The scan is imperfect OCR, so letters and numbers are sometimes wrong.
+Most pages list numbered entries. Each has lettered parts: (a) is the name, (b) is where it stands, (e) is the period, (j) is the description. The scan is imperfect OCR, so letters and numbers are sometimes wrong.
+
+Some pages are running prose instead, describing one building over several paragraphs. Read those the same way. Their locations are written into the sentences, as in "the observatory is 3 miles 3 furlongs almost due south from the Pir Ghaib" or "1 mile 7 furlongs west of south from the Jama Masjid". Those are Spatial Clues and you must return them.
 
 Return one entry per structure the page names. For each:
 - name: as the page gives it. Use "Unknown" if part (a) says the name is unknown.
@@ -44,9 +46,9 @@ Return one entry per structure the page names. For each:
 - period: as printed, or null.
 - passage: the exact run of characters from the page text that locates the structure, normally part (b). Copy it character for character. Do not tidy the OCR.
 - spatialClue: read part (b).
-  - anchorName: the landmark it measures from, as the page writes it. When part (b) gives both a numbered entry and a named landmark, always take the landmark. A number cannot be found on a map and a landmark can. Only put a numbered entry such as "No. 51" when the page names nothing else.
+  - anchorName: the landmark it measures from, as the page writes it, and nothing else. Give the shortest name that identifies it, not the description around it: from "the Pir Ghaib, the Trigonometrical Survey point on the Ridge, near to Hindu Rao's House" the name is "Pir Ghaib". Keep the page's spelling, however odd. When part (b) gives both a numbered entry and a named landmark, always take the landmark. A number cannot be found on a map and a landmark can. Only put a numbered entry such as "No. 51" when the page names nothing else.
   - bearing: the compass direction. Use adjacent when the page says a structure stands on, by or beside something without giving a direction, within when it is inside something, and opposite when it faces something.
-  - distanceValue and distanceUnit: the number and its unit. "half a mile" is 0.5 miles. "a furlong" is 1 furlongs. Use null for both when no distance is given.
+  - distanceValue and distanceUnit: the number and its unit. "half a mile" is 0.5 miles. "a furlong" is 1 furlongs. A distance given in two units, such as "3 miles 3 furlongs", becomes one number in the larger unit: 3.375 miles. Use null for both when no distance is given.
   - null for the whole clue only when part (b) gives no location at all. Standing on a named road is a location.
 
 When the clue names a landmark, the passage you copy must be the part of the page that names it.

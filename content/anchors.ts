@@ -383,6 +383,15 @@ export const ANCHORS: Anchor[] = [
     source: "osm:w290512003",
   },
   {
+    id: "pir-ghaib",
+    name: "Pir Ghaib",
+    // the volume measures from it as the Trigonometrical Survey point on the Ridge
+    aliases: ["Pir Gliaib", "Pir Gaib", "the Trigonometrical Survey point on the Ridge"],
+    centroid: [77.213211, 28.676295],
+    precisionM: 40,
+    source: "osm:n2940614717",
+  },
+  {
     id: "flagstaff-tower",
     name: "Flagstaff Tower",
     aliases: ["the Flag Staff Tower"],
