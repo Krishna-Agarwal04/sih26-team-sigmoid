@@ -1,5 +1,5 @@
-contrib/
-plan/
-docs/
-tests/
+/contrib/
+/plan/
+/docs/
+/tests/
 *.pdf

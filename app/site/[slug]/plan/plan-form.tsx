@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { PLAN_KEY } from "@/lib/route/plan-choices";
 import type { HeritageSite, InterestTag, Persona } from "@/lib/types";
 
 const INTERESTS: { tag: InterestTag; label: string }[] = [
@@ -24,8 +25,6 @@ const PERSONAS: { persona: Persona; label: string; note: string }[] = [
   { persona: "architecture", label: "Architecture", note: "How it was built, and why that way" },
   { persona: "kids", label: "Kids", note: "Shorter, and told as a story" },
 ];
-
-export const PLAN_KEY = "threshold.plan.v1";
 
 export default function PlanForm({ site }: { site: HeritageSite }) {
   const router = useRouter();

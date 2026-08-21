@@ -9,23 +9,16 @@ import { TRIGGER_CONFIG } from "@/lib/location/config";
 import { initialState, prepare, step, type TriggerStatus } from "@/lib/location/engine";
 import { moveBy } from "@/lib/location/geometry";
 import { planRoute } from "@/lib/route/planner";
-import { PLAN_KEY } from "../plan/plan-form";
+import { PLAN_KEY, type PlanChoices } from "@/lib/route/plan-choices";
 import type {
   Coord,
   FactSheet,
   HeritagePoint,
   HeritageSite,
-  InterestTag,
   Narration,
   NarrationKind,
   Persona,
 } from "@/lib/types";
-
-interface Plan {
-  interests: InterestTag[];
-  budgetMinutes: number;
-  persona: Persona;
-}
 
 const WALK_SPEED_MS = 1.2;
 
@@ -47,10 +40,10 @@ export default function Tour({
   factSheets: FactSheet[];
 }) {
   // sessionStorage is not there on the server, so the plan arrives one render late
-  const [plan, setPlan] = useState<Plan | null>(null);
+  const [plan, setPlan] = useState<PlanChoices | null>(null);
   useEffect(() => {
     const saved = sessionStorage.getItem(PLAN_KEY);
-    if (saved) setPlan(JSON.parse(saved) as Plan);
+    if (saved) setPlan(JSON.parse(saved) as PlanChoices);
   }, []);
 
   const persona: Persona = plan?.persona ?? "history";
