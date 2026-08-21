@@ -37,6 +37,19 @@ export interface Fix {
   source: LocationSource;
 }
 
+export interface RouteStop {
+  pointId: string;
+  walkSecFromPrevious: number;
+  narrationSec: number;
+}
+
+export interface Route {
+  stops: RouteStop[];
+  totalSec: number;
+  // Heritage Points that matched the Interest Tags but did not fit the time budget
+  droppedPointIds: string[];
+}
+
 export interface ThresholdCrossing {
   pointId: string;
   kind: NarrationKind;
