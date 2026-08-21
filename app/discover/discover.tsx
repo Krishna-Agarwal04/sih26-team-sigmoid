@@ -16,8 +16,10 @@ export interface ShelfPage {
   pageNo: number;
   printedPageNo: number | null;
   imageUrl: string;
-  clueScore: number;
   text: string;
+  // how many Candidates the committed cache holds for this Page, so the shelf can say which
+  // Pages are worth opening without anyone having to press Analyse on all forty
+  placed: number;
 }
 
 type Phase = "idle" | "reading" | "done" | "unavailable";
@@ -88,10 +90,12 @@ export default function Discover({
         <div className="flex min-w-0 flex-1 flex-col overflow-y-auto p-4">
           <header className="flex flex-wrap items-baseline justify-between gap-2">
             <h1 className="font-display text-2xl text-ink">
-              Page {page.printedPageNo ?? page.pageNo}
-              {page.printedPageNo !== null && (
-                <span className="font-archive ml-2 text-xs text-ink-faint">scan {page.pageNo}</span>
-              )}
+              Scan {page.pageNo}
+              <span className="font-archive ml-2 text-xs text-ink-faint">
+                {page.printedPageNo === null
+                  ? "no printed page number"
+                  : `printed page ${page.printedPageNo}`}
+              </span>
             </h1>
             <button
               type="button"
@@ -123,12 +127,18 @@ export default function Discover({
         </div>
 
         <div className="flex min-h-[22rem] w-full flex-col lg:w-[26rem] lg:border-l lg:border-ink-faint/30">
-          <div className="h-64 shrink-0 lg:h-72">
+          <div className="relative h-64 shrink-0 lg:h-72">
             <DiscoverMapCanvas
               candidates={result?.candidates ?? []}
               openId={openId}
               onOpen={(mentionId) => setOpenId(mentionId)}
             />
+            {phase === "done" && result?.candidates.length === 0 && (
+              <p className="pointer-events-none absolute inset-x-0 bottom-0 z-[500] bg-paper-raised/95 p-3 text-center text-xs leading-relaxed text-ink-muted">
+                Nothing on this page could be placed. The map is empty because the survey measures
+                these from landmarks the Anchor table does not hold, not because it failed.
+              </p>
+            )}
           </div>
           <Results
             phase={phase}
@@ -171,8 +181,9 @@ function Shelf({
       <div className="border-b border-ink-faint/30 p-4">
         <p className="font-archive text-xs tracking-widest text-ink-faint uppercase">The shelf</p>
         <p className="mt-1 text-sm leading-snug text-ink-muted">{title}</p>
-        <p className="font-archive mt-2 text-[11px] text-ink-faint">
-          {pages.length} pages ingested, chosen for how many locations they name
+        <p className="font-archive mt-2 text-[11px] leading-relaxed text-ink-faint">
+          {pages.length} pages ingested, in the order the volume is bound. The number on the right
+          is how many places that page put on the map last time it was read.
         </p>
       </div>
       <ol className="flex max-h-40 flex-row gap-1 overflow-auto p-2 lg:max-h-none lg:flex-1 lg:flex-col">
@@ -181,14 +192,25 @@ function Shelf({
             <button
               type="button"
               onClick={() => onChoose(p)}
-              className={`flex w-full min-w-[5rem] items-baseline justify-between gap-2 px-2 py-1 text-left text-sm ${
+              className={`flex w-full min-w-[6rem] items-baseline justify-between gap-2 px-2 py-1 text-left text-sm ${
                 p.pageNo === current.pageNo
                   ? "bg-paper-sunk text-ink"
                   : "text-ink-muted hover:bg-paper-sunk/60"
               }`}
             >
-              <span>p. {p.printedPageNo ?? p.pageNo}</span>
-              <span className="font-archive text-[11px] text-ink-faint">{p.clueScore}</span>
+              <span>
+                {p.pageNo}
+                {p.printedPageNo !== null && (
+                  <span className="font-archive ml-1 text-[11px] text-ink-faint">
+                    p. {p.printedPageNo}
+                  </span>
+                )}
+              </span>
+              <span
+                className={`font-archive text-[11px] ${p.placed > 0 ? "text-madder" : "text-ink-faint/50"}`}
+              >
+                {p.placed > 0 ? p.placed : "-"}
+              </span>
             </button>
           </li>
         ))}
