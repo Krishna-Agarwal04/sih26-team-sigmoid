@@ -141,4 +141,27 @@ describe("Threshold Crossing", () => {
     ]);
     expect(longEnough.crossings).toHaveLength(2);
   });
+
+  test("stepping inside the Zone after it has spoken fires the inside detail, once", () => {
+    const inside = diwanIAamCentroid;
+
+    const result = walk(initialState(), [
+      fix(SOUTH_OF_DIWAN_I_AAM, 0, 0),
+      fix(SOUTH_OF_DIWAN_I_AAM, 0, 3000),
+      fix(inside, 0, 4000),
+      fix(inside, 0, 5000),
+      fix(inside, 0, 6000),
+    ]);
+
+    expect(result.crossings.map((c) => c.kind)).toEqual(["approach", "inside"]);
+  });
+
+  test("does not fire the inside detail before the Heritage Point has spoken", () => {
+    const result = walk(initialState(), [
+      fix(diwanIAamCentroid, 0, 0),
+      fix(diwanIAamCentroid, 0, 1000),
+    ]);
+
+    expect(result.crossings.filter((c) => c.kind === "inside")).toHaveLength(0);
+  });
 });

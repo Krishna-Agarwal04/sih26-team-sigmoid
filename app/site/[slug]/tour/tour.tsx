@@ -80,6 +80,9 @@ export default function Tour({
   const [started, setStarted] = useState(false);
 
   const audio = useRef<HTMLAudioElement>(null);
+  const walkId = useRef<string>("");
+  if (walkId.current === "") walkId.current = `w_${Math.random().toString(36).slice(2, 10)}`;
+  const [unsent, setUnsent] = useState(0);
   const narration = narrations.find(
     (n) => n.pointId === (speakingId ?? selected.id) && n.persona === persona,
   );
@@ -103,7 +106,26 @@ export default function Tour({
     setSelected(point);
     setSpeakingId(point.id);
     setShowEvidence(false);
-  }, [fix, prepared, routePoints, started, speakingId]);
+
+    // fire and forget. if the log is unreachable the Walk carries on and the count says so
+    fetch("/api/walk/crossing", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        walkId: walkId.current,
+        pointId: crossing.pointId,
+        siteId: site.id,
+        persona,
+        kind: crossing.kind,
+        locationSource: fix.source,
+      }),
+    })
+      .then((r) => r.json())
+      .then((r) => {
+        if (!r.stored) setUnsent((n) => n + 1);
+      })
+      .catch(() => setUnsent((n) => n + 1));
+  }, [fix, prepared, routePoints, started, speakingId, site.id, persona]);
 
   // the element reloads when src changes, so playback can only start after that has landed
   useEffect(() => {
@@ -186,6 +208,7 @@ export default function Tour({
           {Math.round(route.totalSec / 60)} minutes including the walking
           {route.droppedPointIds.length > 0 &&
             ` · ${route.droppedPointIds.length} left out to fit the time`}
+          {unsent > 0 && ` · ${unsent} crossings not logged`}
         </p>
 
         <div className="mt-3 flex flex-wrap gap-2">

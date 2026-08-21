@@ -26,10 +26,12 @@ export interface TriggerStatus {
   driftM: number;
   dwellMs: number;
   fired: boolean;
+  inZone: boolean;
 }
 
 export interface PointState {
   fired: boolean;
+  firedInside: boolean;
   // when the Visitor got fully clear of the ring, or null while they are still near it
   clearSinceT: number | null;
   dwellMs: number;
@@ -58,7 +60,13 @@ export function prepare(points: HeritagePoint[], config: EngineConfig): Prepared
   }));
 }
 
-const UNVISITED: PointState = { fired: false, clearSinceT: null, dwellMs: 0, dwellFrom: null };
+const UNVISITED: PointState = {
+  fired: false,
+  firedInside: false,
+  clearSinceT: null,
+  dwellMs: 0,
+  dwellFrom: null,
+};
 
 export function initialState(): EngineState {
   return { points: {}, lastT: null };
@@ -95,11 +103,20 @@ export function step(
     const next: PointState = held
       ? { ...before, clearSinceT, dwellMs: before.dwellMs + elapsed }
       : { ...before, clearSinceT, dwellMs: 0, dwellFrom: inRing && facing ? at : null };
-    if (rearmed) next.fired = false;
+    if (rearmed) {
+      next.fired = false;
+      next.firedInside = false;
+    }
 
     if (!next.fired && next.dwellMs >= config.dwellMs) {
       crossings.push({ pointId: point.pointId, kind: "approach", t: fix.t });
       next.fired = true;
+    }
+
+    // the detail is a reward for going in, so it only follows a Heritage Point that has spoken
+    if (next.fired && !next.firedInside && isInside(at, point.zone)) {
+      crossings.push({ pointId: point.pointId, kind: "inside", t: fix.t });
+      next.firedInside = true;
     }
 
     points[point.pointId] = next;
@@ -111,6 +128,7 @@ export function step(
       driftM,
       dwellMs: next.dwellMs,
       fired: next.fired,
+      inZone: isInside(at, point.zone),
     });
   }
 
