@@ -12,7 +12,8 @@ export type StructureType =
   | "stepwell" | "caravanserai" | "garden" | "bridge" | "well"
   | "temple" | "madrasa" | "hammam" | "tower" | "other";
 
-export type DistanceUnit = "yards" | "feet" | "miles" | "kos" | "paces" | "gaz";
+// furlong is not in plan/03 but Vol. 2 uses it five times in the forty ingested Pages
+export type DistanceUnit = "yards" | "feet" | "miles" | "furlongs" | "kos" | "paces" | "gaz";
 
 export type BearingToken =
   | "N" | "NE" | "E" | "SE" | "S" | "SW" | "W" | "NW"
