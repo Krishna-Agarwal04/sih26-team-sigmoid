@@ -19,7 +19,7 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
     <Tour
       site={site}
       points={points}
-      narrations={narrations.filter((n) => n.persona === "history" && n.kind === "approach")}
+      narrations={narrations.filter((n) => n.kind === "approach")}
       factSheets={factSheets}
     />
   );

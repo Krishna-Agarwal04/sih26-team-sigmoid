@@ -8,7 +8,17 @@ import { useSimLocation } from "./use-sim-location";
 import { TRIGGER_CONFIG } from "@/lib/location/config";
 import { initialState, prepare, step, type TriggerStatus } from "@/lib/location/engine";
 import { moveBy } from "@/lib/location/geometry";
-import type { Coord, FactSheet, HeritagePoint, HeritageSite, Narration } from "@/lib/types";
+import { planRoute } from "@/lib/route/planner";
+import { PLAN_KEY } from "../plan/plan-form";
+import type { Coord, FactSheet, HeritagePoint, HeritageSite, InterestTag, Narration, Persona } from "@/lib/types";
+
+interface Plan {
+  interests: InterestTag[];
+  budgetMinutes: number;
+  persona: Persona;
+}
+
+const WALK_SPEED_MS = 1.2;
 
 // leaflet reads window while it loads, so it must never render on the server
 const TourMapCanvas = dynamic(() => import("./tour-map-canvas"), {
@@ -27,9 +37,38 @@ export default function Tour({
   narrations: Narration[];
   factSheets: FactSheet[];
 }) {
-  const prepared = useMemo(() => prepare(points, TRIGGER_CONFIG), [points]);
+  // sessionStorage is not there on the server, so the plan arrives one render late
+  const [plan, setPlan] = useState<Plan | null>(null);
+  useEffect(() => {
+    const saved = sessionStorage.getItem(PLAN_KEY);
+    if (saved) setPlan(JSON.parse(saved) as Plan);
+  }, []);
+
+  const persona: Persona = plan?.persona ?? "history";
   // start south of the first Heritage Point, outside its ring, looking at it
   const start = useMemo<Coord>(() => moveBy(points[0].centroid, 70, 180), [points]);
+
+  const route = useMemo(() => {
+    const narrationSecByPoint: Record<string, number> = {};
+    for (const point of points) {
+      const clip = narrations.find((n) => n.pointId === point.id && n.persona === persona);
+      narrationSecByPoint[point.id] = clip?.durationSec ?? 45;
+    }
+    return planRoute({
+      points,
+      narrationSecByPoint,
+      interests: plan?.interests ?? [],
+      budgetSec: (plan?.budgetMinutes ?? 90) * 60,
+      start,
+      walkSpeedMs: WALK_SPEED_MS,
+    });
+  }, [points, narrations, persona, plan, start]);
+
+  const routePoints = useMemo(
+    () => route.stops.flatMap((stop) => points.filter((p) => p.id === stop.pointId)),
+    [route, points],
+  );
+  const prepared = useMemo(() => prepare(routePoints, TRIGGER_CONFIG), [routePoints]);
 
   const { fix, moveTo, walking, setWalking, speedMs, setSpeedMs } = useSimLocation(start, 0);
   const engine = useRef(initialState());
@@ -41,7 +80,9 @@ export default function Tour({
   const [started, setStarted] = useState(false);
 
   const audio = useRef<HTMLAudioElement>(null);
-  const narration = narrations.find((n) => n.pointId === (speakingId ?? selected.id));
+  const narration = narrations.find(
+    (n) => n.pointId === (speakingId ?? selected.id) && n.persona === persona,
+  );
   const factSheet = factSheets.find((f) => f.pointId === selected.id);
 
   useEffect(() => {
@@ -57,18 +98,24 @@ export default function Tour({
 
     const crossing = result.crossings[0];
     if (!crossing || !started) return;
-    const point = points.find((p) => p.id === crossing.pointId);
+    const point = routePoints.find((p) => p.id === crossing.pointId);
     if (!point) return;
     setSelected(point);
     setSpeakingId(point.id);
     setShowEvidence(false);
-  }, [fix, prepared, points, started, speakingId]);
+  }, [fix, prepared, routePoints, started, speakingId]);
 
   // the element reloads when src changes, so playback can only start after that has landed
   useEffect(() => {
     if (speakingId === null) return;
     audio.current?.play().catch(() => undefined);
   }, [speakingId, narration?.audioUrl]);
+
+  useEffect(() => {
+    if (routePoints.length > 0 && !routePoints.some((p) => p.id === selected.id)) {
+      setSelected(routePoints[0]);
+    }
+  }, [routePoints, selected.id]);
 
   function beginTour() {
     setStarted(true);
@@ -91,7 +138,7 @@ export default function Tour({
       <div className="h-72 shrink-0 lg:h-auto lg:min-h-0 lg:flex-1">
         <TourMapCanvas
           site={site}
-          points={points}
+          points={routePoints}
           prepared={prepared}
           statuses={statuses}
           fix={fix}
@@ -101,6 +148,7 @@ export default function Tour({
             setShowEvidence(false);
           }}
           onMoveVisitor={moveTo}
+          routeLine={[start, ...routePoints.map((p) => p.centroid)]}
         />
       </div>
 
@@ -133,8 +181,15 @@ export default function Tour({
           )}
         </div>
 
+        <p className="font-archive mt-2 text-xs text-ink-faint">
+          {routePoints.length} Heritage Points &middot; about{" "}
+          {Math.round(route.totalSec / 60)} minutes including the walking
+          {route.droppedPointIds.length > 0 &&
+            ` · ${route.droppedPointIds.length} left out to fit the time`}
+        </p>
+
         <div className="mt-3 flex flex-wrap gap-2">
-          {points.map((point) => (
+          {routePoints.map((point) => (
             <button
               key={point.id}
               type="button"
@@ -160,7 +215,7 @@ export default function Tour({
         )}
 
         <div className="mt-4">
-          <TriggerPanel points={points} statuses={statuses} />
+          <TriggerPanel points={routePoints} statuses={statuses} />
         </div>
 
         <div className="mt-4">

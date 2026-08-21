@@ -1,7 +1,7 @@
 "use client";
 
 import { divIcon } from "leaflet";
-import { MapContainer, Marker, Polygon, TileLayer, Tooltip } from "react-leaflet";
+import { MapContainer, Marker, Polygon, Polyline, TileLayer, Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { ringToLeaflet, sector, toLeaflet } from "@/lib/location/geometry";
 import { TRIGGER_CONFIG } from "@/lib/location/config";
@@ -24,6 +24,7 @@ export default function TourMapCanvas({
   selectedId,
   onSelect,
   onMoveVisitor,
+  routeLine,
 }: {
   site: HeritageSite;
   points: HeritagePoint[];
@@ -33,6 +34,7 @@ export default function TourMapCanvas({
   selectedId: string | null;
   onSelect: (point: HeritagePoint) => void;
   onMoveVisitor: (to: Coord) => void;
+  routeLine: Coord[];
 }) {
   const at: Coord = [fix.lng, fix.lat];
   const dwelling = statuses.filter((s) => s.dwellMs > 0).sort((a, b) => b.dwellMs - a.dwellMs)[0];
@@ -60,6 +62,14 @@ export default function TourMapCanvas({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         maxZoom={20}
       />
+
+      {routeLine.length > 1 && (
+        <Polyline
+          positions={routeLine.map(toLeaflet)}
+          pathOptions={{ color: "#9A3412", weight: 2, dashArray: "8 6" }}
+          interactive={false}
+        />
+      )}
 
       {prepared.map((point) => (
         <Polygon

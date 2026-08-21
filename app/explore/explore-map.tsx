@@ -51,7 +51,7 @@ export default function ExploreMap({ sites }: { sites: HeritageSite[] }) {
               </p>
               {selected.pointIds.length > 0 ? (
                 <Link
-                  href={`/site/${selected.id}/tour`}
+                  href={`/site/${selected.id}/plan`}
                   className="mt-4 inline-block border border-madder px-4 py-2 text-sm text-madder hover:bg-madder hover:text-paper"
                 >
                   Begin tour
