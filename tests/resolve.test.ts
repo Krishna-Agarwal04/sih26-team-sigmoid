@@ -10,6 +10,7 @@ const KHAIR_UL_MANAZIL: Anchor = {
   aliases: ["Khairul Manazil", "Khair-ul-Manazil Masjid"],
   centroid: [77.239555, 28.607493],
   precisionM: 40,
+  source: "osm:n7043400785",
 };
 
 // a road runs for miles, so naming one barely pins anything down
@@ -19,6 +20,7 @@ const MUTTRA_ROAD: Anchor = {
   aliases: ["Mathura Road"],
   centroid: [77.2436, 28.5966],
   precisionM: 2000,
+  source: "osm:w39013511",
 };
 
 const ANCHORS = [KHAIR_UL_MANAZIL, MUTTRA_ROAD];

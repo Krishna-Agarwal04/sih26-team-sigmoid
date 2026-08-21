@@ -141,6 +141,8 @@ export interface Anchor {
   centroid: Coord;
   // how tightly the name pins down a spot, in metres
   precisionM: number;
+  // "osm:w223456559" where a mapped feature confirms it, "approximate" where nothing does
+  source: string;
 }
 
 export interface SpatialClue {
