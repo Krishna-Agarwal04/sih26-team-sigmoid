@@ -61,6 +61,12 @@ export default function EvidencePanel({
         <p className="font-archive border-l-2 border-madder/40 pl-3 text-[12px] leading-relaxed text-ink">
           {mention.passage}
         </p>
+        {mention.passageOffset === null && (
+          <p className="mt-2 text-[11px] leading-relaxed text-madder">
+            This run of characters does not appear on the page. It was composed rather than copied,
+            so it is shown here and used for nothing.
+          </p>
+        )}
         <p className="mt-2 font-archive text-[11px] leading-relaxed text-ink-faint">
           {volumeTitle}, page {page.printedPageNo ?? page.pageNo} (scan {page.pageNo}). Public
           domain, via archive.org.
@@ -70,11 +76,14 @@ export default function EvidencePanel({
       {!candidate ? (
         <Section title="Why it is not on the map">
           <p className="text-sm leading-relaxed text-ink-muted">
-            {mention.spatialClue
-              ? `The survey places this relative to ${mention.spatialClue.anchorName}, which is not
-                 in the Anchor table, so there is nothing to measure from. Showing it anywhere would
-                 be a guess.`
-              : "The page records this structure without saying where it stands."}
+            {mention.passageOffset === null
+              ? `The passage above cannot be found on the page, so the clue read out of it is not
+                 something the survey printed. Nothing is placed from it.`
+              : mention.spatialClue
+                ? `The survey places this relative to ${mention.spatialClue.anchorName}, which is not
+                   in the Anchor table, so there is nothing to measure from. Showing it anywhere
+                   would be a guess.`
+                : "The page records this structure without saying where it stands."}
           </p>
         </Section>
       ) : (

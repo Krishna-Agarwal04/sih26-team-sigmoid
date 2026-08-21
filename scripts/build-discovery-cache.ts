@@ -85,7 +85,7 @@ async function main() {
     done++;
 
     const by = (v: string) => candidates.filter((c) => c.evidence.baselineVerdict === v).length;
-    const lost = mentions.filter((m) => m.passageOffset[1] === 0).length;
+    const lost = mentions.filter((m) => m.passageOffset === null).length;
     console.log(
       `p${page.pageNo}\t${mentions.length} mentions\t${candidates.length} placed\t` +
         `${by("representation_gap")} gap\t${by("matched_existing")} matched\t${by("inconclusive")} unclear\t` +

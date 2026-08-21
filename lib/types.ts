@@ -158,8 +158,9 @@ export interface Mention {
   type: StructureType;
   period: string | null;
   passage: string;
-  // char range into the Page text, for highlighting
-  passageOffset: [number, number];
+  // char range into the Page text, for highlighting. null means the passage could not be found
+  // there at all, which means the model did not copy it and nothing it says can be trusted
+  passageOffset: [number, number] | null;
   spatialClue: SpatialClue | null;
 }
 

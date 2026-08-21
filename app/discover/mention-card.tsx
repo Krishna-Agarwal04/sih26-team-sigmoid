@@ -72,11 +72,19 @@ export default function MentionCard({
           )}
         </div>
 
-        {!candidate && clue && (
-          <p className="mt-1 text-[11px] leading-relaxed text-ink-faint">
-            The survey measures this from {clue.anchorName}, which is not in the Anchor table. It is
-            not placed rather than placed wrongly.
+        {mention.passageOffset === null ? (
+          <p className="mt-1 text-[11px] leading-relaxed text-madder">
+            This passage is not in the page. The model composed it rather than copying it, so
+            nothing here is placed.
           </p>
+        ) : (
+          !candidate &&
+          clue && (
+            <p className="mt-1 text-[11px] leading-relaxed text-ink-faint">
+              The survey measures this from {clue.anchorName}, which is not in the Anchor table. It
+              is not placed rather than placed wrongly.
+            </p>
+          )
         )}
       </button>
     </li>

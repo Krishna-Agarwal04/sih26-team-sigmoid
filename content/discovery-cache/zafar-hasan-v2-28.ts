@@ -8,8 +8,8 @@ const page: AnalyseResult = {
   "mentions": [
     {
       "id": "m_28_1",
-      "name": "Nasyan",
-      "type": "temple",
+      "name": "Nasyan (temple)",
+      "type": "pavilion",
       "period": "Late Mughal",
       "passage": "Some 200 yards from No. 17 towards west.",
       "passageOffset": [

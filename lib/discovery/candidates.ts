@@ -24,6 +24,9 @@ export function buildCandidates(input: CandidateInput): Candidate[] {
   const candidates: Candidate[] = [];
 
   for (const mention of input.mentions) {
+    // a passage the Page does not contain was not copied but composed, and a clue read out of
+    // a composed passage is a distance the survey never printed
+    if (mention.passageOffset === null) continue;
     const resolved = resolveClue(mention.spatialClue, input.anchors);
     if (resolved.status !== "resolved") continue;
     if (!mention.spatialClue) continue;
