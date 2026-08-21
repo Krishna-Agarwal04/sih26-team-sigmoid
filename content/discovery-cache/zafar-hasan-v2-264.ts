@@ -111,7 +111,7 @@ const page: AnalyseResult = {
             "id": "n2714497374",
             "name": "Qadam Sharief s Tomb",
             "distanceM": 45.76448739568557,
-            "insideRadius": true
+            "insideRadius": false
           },
           {
             "id": "n2981346624",
@@ -186,7 +186,7 @@ const page: AnalyseResult = {
             "id": "n2714497374",
             "name": "Qadam Sharief s Tomb",
             "distanceM": 201.2124801620092,
-            "insideRadius": true
+            "insideRadius": false
           },
           {
             "id": "n2981346624",

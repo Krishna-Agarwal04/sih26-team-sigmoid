@@ -65,7 +65,7 @@ function withoutSchemaKey(schema: Record<string, unknown>): Record<string, unkno
 
 async function askGemini(ask: Ask): Promise<ModelOutcome<unknown>> {
   const key = process.env.GEMINI_API_KEY;
-  const modelId = process.env.GEMINI_MODEL || "gemini-3.7-flash";
+  const modelId = process.env.GEMINI_MODEL || "gemini-3.5-flash";
   if (!key) return { ok: false, reason: "no GEMINI_API_KEY" };
 
   try {
