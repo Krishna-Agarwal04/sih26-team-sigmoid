@@ -1,10 +1,30 @@
 import type { HeritagePoint } from "@/lib/types";
+import { chattaChowk } from "./red-fort/chatta-chowk";
 import { diwanIAam } from "./red-fort/diwan-i-aam";
 import { diwanIKhas } from "./red-fort/diwan-i-khas";
+import { hammam } from "./red-fort/hammam";
+import { hayatBakhshBagh } from "./red-fort/hayat-bakhsh-bagh";
+import { khasMahal } from "./red-fort/khas-mahal";
+import { lahoriGate } from "./red-fort/lahori-gate";
+import { motiMasjid } from "./red-fort/moti-masjid";
+import { mumtazMahal } from "./red-fort/mumtaz-mahal";
+import { naubatKhana } from "./red-fort/naubat-khana";
 import { rangMahal } from "./red-fort/rang-mahal";
 
 // visitor order, west to east
-export const points: HeritagePoint[] = [diwanIAam, rangMahal, diwanIKhas];
+export const points: HeritagePoint[] = [
+  lahoriGate,
+  chattaChowk,
+  naubatKhana,
+  diwanIAam,
+  rangMahal,
+  khasMahal,
+  diwanIKhas,
+  hammam,
+  motiMasjid,
+  hayatBakhshBagh,
+  mumtazMahal,
+];
 
 export function pointById(id: string): HeritagePoint | undefined {
   return points.find((p) => p.id === id);

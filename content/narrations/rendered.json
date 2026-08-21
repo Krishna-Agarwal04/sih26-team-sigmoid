@@ -1,4 +1,72 @@
 {
+  "red-fort/lahori-gate/history.en.approach": {
+    "audioUrl": "/audio/red-fort/lahori-gate/history.en.approach.mp3",
+    "durationSec": 34.533,
+    "sentences": [
+      "You are at the Lahori Gate, the way in.",
+      "Shah Jahan built it facing Lahore, which is how it got its name.",
+      "The wall you are looking at ends in bastions at both corners, each one crowned by a pavilion.",
+      "The screen wall in front of the gate is not his.",
+      "Aurangzeb added it, and his father wrote to him from prison in Agra to say that he had made the Fort a bride and set a veil before her face.",
+      "It is not clear whether that was meant as a compliment.",
+      "Every fifteenth of August the Prime Minister speaks to the country from the rampart above you."
+    ],
+    "cues": [
+      0.1,
+      3.103,
+      7.404,
+      13.453,
+      16.769,
+      25.667,
+      29.194
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "9fb4dd9a194e66af"
+  },
+  "red-fort/chatta-chowk/history.en.approach": {
+    "audioUrl": "/audio/red-fort/chatta-chowk/history.en.approach.mp3",
+    "durationSec": 33.834,
+    "sentences": [
+      "This is the Chatta Chowk, the covered bazaar.",
+      "It runs two hundred and thirty feet, and there are thirty two arched rooms along the sides of it.",
+      "They were shops then and they are shops now.",
+      "Halfway along, the roof opens into an octagonal court about thirty feet across, and that is the only thing letting light and air into the whole passage.",
+      "Look up at the plaster around that opening and you can still find traces of the painting that once covered it.",
+      "Fergusson called this the noblest entrance belonging to any palace still standing."
+    ],
+    "cues": [
+      0.1,
+      3.146,
+      9.205,
+      12.277,
+      21.97,
+      28.739
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "ede3ed1e839318c0"
+  },
+  "red-fort/naubat-khana/history.en.approach": {
+    "audioUrl": "/audio/red-fort/naubat-khana/history.en.approach.mp3",
+    "durationSec": 28.993,
+    "sentences": [
+      "The Naubat Khana, the drum house.",
+      "This was the main way into the court of the Diwan-i-Aam, and it was the point at which you got off your elephant.",
+      "Everybody did, except princes of the blood royal.",
+      "It was called the Hathia Pol, the elephant gate, for that reason.",
+      "Above the gateway there is an open hall of five arched bays, and that is where the musicians sat.",
+      "They played at fixed hours, so this building told the time as well as guarding the door."
+    ],
+    "cues": [
+      0.1,
+      2.563,
+      9.025,
+      12.521,
+      16.98,
+      23.506
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "0b83ed09fbe6dff0"
+  },
   "red-fort/diwan-i-aam/history.en.approach": {
     "audioUrl": "/audio/red-fort/diwan-i-aam/history.en.approach.mp3",
     "durationSec": 42.161,
@@ -51,6 +119,30 @@
     "voice": "en-IN-PrabhatNeural",
     "textHash": "818891867f98fa54"
   },
+  "red-fort/khas-mahal/history.en.approach": {
+    "audioUrl": "/audio/red-fort/khas-mahal/history.en.approach.mp3",
+    "durationSec": 41.949,
+    "sentences": [
+      "This is the Khas Mahal, where the Emperor actually lived.",
+      "Three rooms face the Diwan-i-Khas, three more behind them were the sleeping chamber, and the hall alongside held the wardrobe and the treasury.",
+      "The walls carry a dado of inlaid marble.",
+      "Look at the screen on the north wall.",
+      "It was cut out of a single slab, and the pattern in it is a pair of scales hanging over a crescent moon among stars and clouds.",
+      "That is the Mizan-i-Adl, the scales of justice, and it was put where anyone bringing a complaint would see it.",
+      "The inscriptions on the arches were written by Sadullah Khan, who ran the government of Shah Jahan until he died in 1656."
+    ],
+    "cues": [
+      0.1,
+      3.993,
+      12.86,
+      16.069,
+      18.866,
+      26.938,
+      33.771
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "c1fe9016d85e7c63"
+  },
   "red-fort/diwan-i-khas/history.en.approach": {
     "audioUrl": "/audio/red-fort/diwan-i-khas/history.en.approach.mp3",
     "durationSec": 42.669,
@@ -76,5 +168,101 @@
     ],
     "voice": "en-IN-PrabhatNeural",
     "textHash": "f9f92928ae991f17"
+  },
+  "red-fort/hammam/history.en.approach": {
+    "audioUrl": "/audio/red-fort/hammam/history.en.approach.mp3",
+    "durationSec": 34.3,
+    "sentences": [
+      "The Hammam, the royal baths.",
+      "Three main rooms divided by corridors, and every surface you would have touched is marble inlaid with coloured stone.",
+      "The pavements, the reservoirs, the slabs the steam came through, and the walls up to waist height.",
+      "The room facing the river was where you undressed.",
+      "It has three fountain basins in it, and one of them ran rose water.",
+      "Some of the coloured glass in the window lattice is original.",
+      "Heating this building was said to take a hundred and twenty five maunds of firewood, which is something over four tonnes."
+    ],
+    "cues": [
+      0.1,
+      2.161,
+      9.533,
+      15.487,
+      18.697,
+      23.516,
+      27.436
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "93716f483a650b41"
+  },
+  "red-fort/moti-masjid/history.en.approach": {
+    "audioUrl": "/audio/red-fort/moti-masjid/history.en.approach.mp3",
+    "durationSec": 32.203,
+    "sentences": [
+      "The Moti Masjid, the pearl mosque.",
+      "Aurangzeb built it about eleven years after the Fort was finished, and it cost a hundred and sixty thousand rupees of the time.",
+      "It was private.",
+      "The Emperor prayed here, and so did the women of the household, who reached it by their own passage through the north wall.",
+      "The doors on the east side are plated with copper.",
+      "The domes are wrong.",
+      "The originals were covered in gilded copper, they were damaged in 1857, and what you are looking at is the repair."
+    ],
+    "cues": [
+      0.1,
+      2.595,
+      10.19,
+      11.822,
+      19.184,
+      22.658,
+      24.491
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "b248b1fc1bdebef9"
+  },
+  "red-fort/hayat-bakhsh-bagh/history.en.approach": {
+    "audioUrl": "/audio/red-fort/hayat-bakhsh-bagh/history.en.approach.mp3",
+    "durationSec": 34.152,
+    "sentences": [
+      "The Hayat Bakhsh Bagh.",
+      "The name means life bestowing.",
+      "It was laid out with the rest of the Fort, quartered by water channels in the Persian manner.",
+      "Then it was lost.",
+      "By 1902 the whole garden was under earth, rubble and roads, and the channels had almost completely gone.",
+      "Digging it back out took from 1904 to 1911.",
+      "Only half of it came back, because the army had built barracks on the other half.",
+      "Almost everything you can see of the causeways and the channels is reconstruction."
+    ],
+    "cues": [
+      0.1,
+      1.843,
+      4.269,
+      9.788,
+      11.61,
+      19.205,
+      23.728,
+      29.078
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "a88bf12922a2fa7b"
+  },
+  "red-fort/mumtaz-mahal/history.en.approach": {
+    "audioUrl": "/audio/red-fort/mumtaz-mahal/history.en.approach.mp3",
+    "durationSec": 34.163,
+    "sentences": [
+      "Mumtaz Mahal, eighty eight feet by eighty two.",
+      "This was one of the apartments of the seraglio, the part of the palace where the women of the household lived.",
+      "The lower parts of the walls and piers are marble, and traces of the painted and glass decoration that covered the rest have been uncovered.",
+      "The gilded chhatris that stood at the corners of the roof are gone.",
+      "What happened to this building afterwards is roughly what happened to the whole Fort.",
+      "It was a prison after 1857, then a sergeants mess, and it is a museum now."
+    ],
+    "cues": [
+      0.1,
+      3.474,
+      10.052,
+      18.633,
+      22.87,
+      28.135
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "ce87e27bd8e946e1"
   }
 }

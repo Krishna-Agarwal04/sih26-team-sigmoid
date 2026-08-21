@@ -4,6 +4,9 @@ import { join } from "node:path";
 // a Zone is the structure's real footprint, so we take OSM's traced way rather than draw one
 const ZONES: Record<string, number> = {
   "red-fort/lahori-gate": 80429907,
+  "red-fort/chatta-chowk": 80429800,
+  "red-fort/moti-masjid": 223903623,
+  "red-fort/hayat-bakhsh-bagh": 320353003,
   "red-fort/naubat-khana": 80429900,
   "red-fort/diwan-i-aam": 80429794,
   "red-fort/rang-mahal": 80429915,
