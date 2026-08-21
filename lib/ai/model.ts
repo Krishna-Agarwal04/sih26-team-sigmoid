@@ -56,6 +56,13 @@ async function askGroq(ask: Ask): Promise<ModelOutcome<unknown>> {
   }
 }
 
+// zod stamps a $schema key on its output and Gemini rejects the field
+function withoutSchemaKey(schema: Record<string, unknown>): Record<string, unknown> {
+  const { $schema, ...rest } = schema;
+  void $schema;
+  return rest;
+}
+
 async function askGemini(ask: Ask): Promise<ModelOutcome<unknown>> {
   const key = process.env.GEMINI_API_KEY;
   const modelId = process.env.GEMINI_MODEL || "gemini-3.7-flash";
@@ -71,7 +78,12 @@ async function askGemini(ask: Ask): Promise<ModelOutcome<unknown>> {
         body: JSON.stringify({
           systemInstruction: { parts: [{ text: ask.system }] },
           contents: [{ role: "user", parts: [{ text: ask.user }] }],
-          generationConfig: { temperature: 0, responseMimeType: "application/json" },
+          generationConfig: {
+            temperature: 0,
+            responseMimeType: "application/json",
+            // without this it free-forms and fails the zod parse, which makes it no fallback at all
+            responseJsonSchema: withoutSchemaKey(ask.jsonSchema),
+          },
         }),
       },
     );

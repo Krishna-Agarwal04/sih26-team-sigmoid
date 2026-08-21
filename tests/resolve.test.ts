@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { metresBetween } from "@/lib/location/geometry";
 import { resolveClue } from "@/lib/discovery/resolve";
-import type { RadiusParts } from "@/lib/discovery/resolve";
+import type { RadiusParts } from "@/lib/types";
 import type { Anchor, SpatialClue } from "@/lib/types";
 
 const KHAIR_UL_MANAZIL: Anchor = {

@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // the Modern Baseline is read at runtime by /api/discover/analyse, so Vercel has to ship it
+  outputFileTracingIncludes: {
+    "/api/discover/analyse": ["./content/baseline.geojson"],
+  },
 };
 
 export default nextConfig;
