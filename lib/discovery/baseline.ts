@@ -1,5 +1,5 @@
 import { metresBetween } from "@/lib/location/geometry";
-import type { BaselineMatch, Coord } from "@/lib/types";
+import type { BaselineMatch, BaselineNeighbour, Coord } from "@/lib/types";
 
 export interface BaselineProperties {
   name: string | null;
@@ -15,18 +15,18 @@ export interface BaselineFeature {
   properties: BaselineProperties;
 }
 
-export interface BaselineNeighbour extends BaselineMatch {
-  insideRadius: boolean;
-}
-
 export interface BaselineCheck {
-  verdict: "matched_existing" | "representation_gap";
+  verdict: "matched_existing" | "representation_gap" | "inconclusive";
   match: BaselineMatch | null;
   checked: BaselineNeighbour[];
 }
 
 // enough for the Evidence panel to show its working without turning into a list
 const NEIGHBOURS_KEPT = 5;
+
+// past this the circle covers so much of Delhi that finding something inside it says nothing,
+// and finding nothing says nothing either
+const CONCLUSIVE_RADIUS_M = 500;
 
 // an unnamed node still proves something is mapped here, so it needs a label a Reviewer can chase
 function label(feature: BaselineFeature): string {
@@ -44,6 +44,10 @@ export function checkBaseline(centroid: Coord, uncertaintyRadiusM: number, basel
     })
     .sort((a, b) => a.distanceM - b.distanceM)
     .slice(0, NEIGHBOURS_KEPT);
+
+  if (uncertaintyRadiusM > CONCLUSIVE_RADIUS_M) {
+    return { verdict: "inconclusive", match: null, checked: neighbours };
+  }
 
   const nearest = neighbours.find((n) => n.insideRadius) ?? null;
 

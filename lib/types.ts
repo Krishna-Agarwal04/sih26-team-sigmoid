@@ -182,6 +182,33 @@ export interface BaselineMatch {
   distanceM: number;
 }
 
+export interface BaselineNeighbour extends BaselineMatch {
+  insideRadius: boolean;
+}
+
+// the four numbers that add up to the Uncertainty Radius drawn on the map
+export interface RadiusParts {
+  anchorPrecisionM: number;
+  bearingSpreadM: number;
+  distanceVaguenessM: number;
+  floorTopUpM: number;
+}
+
+// what the Evidence panel needs to show a Candidate's working. F22
+export interface CandidateEvidence {
+  anchorId: string;
+  anchorName: string;
+  anchorSource: string;
+  anchorCentroid: Coord;
+  bearingDeg: number | null;
+  distanceM: number | null;
+  radiusParts: RadiusParts;
+  // a Representation Gap and a circle too wide to check are both status candidate, and the
+  // screen has to tell them apart
+  baselineVerdict: "matched_existing" | "representation_gap" | "inconclusive";
+  baselineChecked: BaselineNeighbour[];
+}
+
 export interface Candidate {
   id: string;
   mentionId: string;
@@ -190,6 +217,7 @@ export interface Candidate {
   status: CandidateStatus;
   matchedBaselineFeature: BaselineMatch | null;
   confidence: Confidence;
+  evidence: CandidateEvidence;
 }
 
 export interface CandidateEvent {

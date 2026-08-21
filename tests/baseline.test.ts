@@ -83,3 +83,25 @@ describe("checking a Candidate against the Modern Baseline", () => {
     expect([...gaps].sort((a, b) => a - b)).toEqual(gaps);
   });
 });
+
+describe("a circle too wide to conclude anything from", () => {
+  test("a kilometres-wide radius cannot support a match, however close the feature", () => {
+    const r = checkBaseline(AT, 2500, [feature("n1", "Sabz Burj", 90)]);
+
+    expect(r.verdict).toBe("inconclusive");
+    expect(r.match).toBeNull();
+    // the nearest features still come back, so the panel can show what was in range
+    expect(r.checked[0].name).toBe("Sabz Burj");
+  });
+
+  test("nor can it support a Representation Gap, because half of Delhi is inside it", () => {
+    const r = checkBaseline(AT, 2500, []);
+
+    expect(r.verdict).toBe("inconclusive");
+  });
+
+  test("a radius under the limit still decides one way or the other", () => {
+    expect(checkBaseline(AT, 400, [feature("n1", "Sabz Burj", 90)]).verdict).toBe("matched_existing");
+    expect(checkBaseline(AT, 400, [feature("n1", "Sabz Burj", 900)]).verdict).toBe("representation_gap");
+  });
+});

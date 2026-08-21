@@ -1,12 +1,5 @@
 import { moveBy } from "@/lib/location/geometry";
-import type { Anchor, BearingToken, Coord, DistanceUnit, SpatialClue } from "@/lib/types";
-
-export interface RadiusParts {
-  anchorPrecisionM: number;
-  bearingSpreadM: number;
-  distanceVaguenessM: number;
-  floorTopUpM: number;
-}
+import type { Anchor, BearingToken, Coord, DistanceUnit, RadiusParts, SpatialClue } from "@/lib/types";
 
 export type Resolution =
   | {
