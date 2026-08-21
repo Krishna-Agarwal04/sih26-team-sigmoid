@@ -14,9 +14,9 @@ import type { AnalyseResult } from "@/lib/types";
 const VOLUME_ID = "zafar-hasan-v2";
 const OUT_DIR = "content/discovery-cache";
 
-// Groq's free tier binds on tokens, not requests: 8000 a minute, and one Page costs
-// roughly 2000 once the model's reasoning tokens are counted
-const PAUSE_MS = 25_000;
+// Groq's free tier binds on tokens, not requests: 8000 a minute against roughly 5400 for one
+// Page, most of it the model thinking. Going faster than this only buys 429s and longer waits.
+const PAUSE_MS = Number(process.env.CACHE_PAUSE_MS ?? 45_000);
 const RETRY_WAIT_MS = 65_000;
 
 interface Page {

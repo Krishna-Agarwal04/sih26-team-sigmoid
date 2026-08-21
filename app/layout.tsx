@@ -48,6 +48,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Link href="/explore" className="hover:text-madder">
               Explore
             </Link>
+            <Link href="/discover" className="hover:text-madder">
+              Discover
+            </Link>
           </nav>
         </header>
         <div className="flex min-h-0 flex-1 flex-col">{children}</div>
