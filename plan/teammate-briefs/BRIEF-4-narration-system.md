@@ -1,6 +1,6 @@
 # BRIEF 4 - The Narration System
 
-**Owner:** one person. **Time:** 2 days. **Difficulty:** medium. Most content work, most audible payoff.
+**Owner:** Krishna. **Time:** 2 days. **Difficulty:** medium. Most content work, most audible payoff.
 
 Build this standalone. You do not need the main repo and you will not touch its code.
 
@@ -98,7 +98,7 @@ For each Heritage Point, 8 to 12 lines. Each line is **one self-contained senten
       source:'ASI Red Fort site documentation' },
     { id:'fs_diwan_i_aam_l2',
       text:'It was completed around 1648, as part of Shah Jahan\'s new capital Shahjahanabad.',
-      source:'Zafar Hasan, List of Muhammadan and Hindu Monuments, Vol. 1' },
+      source:'Zafar Hasan, List of Muhammadan and Hindu Monuments, Vol. I (1916), p. 12' },
     // ...
   ],
   sources: [{ label:'ASI Red Fort', kind:'asi' }],
@@ -107,7 +107,43 @@ For each Heritage Point, 8 to 12 lines. Each line is **one self-contained senten
 
 **A line without a nameable source does not go in.** Not "general knowledge", not "commonly known". If you cannot name where it came from, it is not a fact, it is a rumour, and a history judge will find it.
 
-Start with 4 Heritage Points: Diwan-i-Aam, Diwan-i-Khas, Rang Mahal, Lahori Gate. Get those right before doing all 11.
+Start with 4 Heritage Points: Diwan-i-Aam, Diwan-i-Khas, Rang Mahal, Lahori Gate. Get those right, then work outward through the list in 4.1b.
+
+### 4.1b How far to go - the Delhi list
+
+Once Red Fort reads well, **keep going**. Fact Sheets are the thing this project runs short of, and every one you write is one we do not have to. Work down this list in order. Anything you finish is used; anything you do not is simply not used, and nothing breaks either way.
+
+Write each as its own file. One Fact Sheet, one Living Tradition, one Narration per Persona. Do not wait until the list is finished to open a PR - open one when Red Fort is done, then add to it.
+
+**Tier 1, the ones a visitor has heard of.** These carry the demo.
+
+Red Fort - Qutub complex - Humayun's Tomb complex - Jama Masjid - Purana Qila - Safdarjung's Tomb - Tughlaqabad Fort - Hauz Khas complex - Lodi Gardens - Jantar Mantar - Nizamuddin Dargah - Feroz Shah Kotla
+
+**Tier 2, real monuments that most people in Delhi have never entered.** This tier is the point of the project. A judge who lives in Delhi should read this list and find something they did not know was there.
+
+Agrasen ki Baoli - Rajon ki Baoli - Gandhak ki Baoli - Zafar Mahal, Mehrauli - Jahaz Mahal, Mehrauli - Jamali Kamali mosque and tomb - Balban's Tomb - Quli Khan's Tomb - Adham Khan's Tomb, called Bhulbhulaiyan - Bhuli Bhatiyari ka Mahal - Satpula - Chausath Khamba - Lal Gumbad - Khirki Masjid - Begumpuri Masjid - Bijay Mandal - Moth ki Masjid - Chor Minar - Sultan Ghari - Abdur Rahim Khan-i-Khanan's Tomb - Najaf Khan's Tomb - Nila Gumbad - Athpula - Hijron ka Khanqah - Dadi Poti ka Gumbad - Bara Lao ka Gumbad - Madhi Masjid - Wazirpur group of tombs - Mutiny Memorial - Coronation Park - Dara Shikoh Library
+
+**Tier 3, Living Traditions rather than buildings.** These answer the "traditions" half of the theme and they are the easiest thing on this list to get wrong, so source them hard. Attach each one to the Heritage Point it actually belongs to rather than inventing a site for it.
+
+Qawwali at Nizamuddin on Thursday nights - Phool Walon ki Sair in Mehrauli - the Dilli gharana of Hindustani music - zardozi and karchobi embroidery in Old Delhi - meenakari and thathera metalwork - ittar sellers in Gali Ballimaran - kite making around Lal Kuan before Independence Day - Urdu mushaira - Ramlila at Ramlila Maidan - the food streets of Chandni Chowk and Matia Mahal
+
+### 4.1c Where the facts come from
+
+Do not write from memory, and do not write from a blog. In rough order of how much a judge will trust them:
+
+1. **Zafar Hasan, _List of Muhammadan and Hindu Monuments, Delhi Province_,** Archaeological Survey of India, 1916 to 1922. Public domain, and it covers most of Tier 2 by name.
+   - Vol. 1, walled city: `https://archive.org/details/in.ernet.dli.2015.70478`
+   - Vol. 2, outlying areas: `https://archive.org/details/in.ernet.dli.2015.69530`
+   - Vol. 3: `https://archive.org/details/in.ernet.dli.2015.69531`
+   Cite as `Zafar Hasan, Vol. II (1919), p. 40`. Use the printed page number on the scan.
+2. **ASI Delhi Circle** listings and on-site information boards. Cite as `kind: 'asi'`.
+3. **INTACH Delhi** listings, and named books - Carr Stephen, Fanshawe, Percival Spear, Narayani Gupta, Rana Safvi. Cite the author and page.
+4. **Wikipedia only when it carries its own reference**, and then cite that reference rather than the article.
+
+For coordinates, look the place up on OpenStreetMap and take the coordinate off the mapped feature. If OSM does not have it, say so in your PR rather than guessing - we would rather show a site with an honest "position approximate" label than a confident wrong pin.
+
+**House rules that apply to every line you write:** no em dashes and no en dashes, in the text or the narration, because they also make text-to-speech pause strangely. Straight quotes only. A line without a nameable source does not go in.
+
 
 ### 4.2 Living Tradition - one per point
 
