@@ -23,6 +23,44 @@
     "voice": "en-IN-PrabhatNeural",
     "textHash": "9fb4dd9a194e66af"
   },
+  "red-fort/lahori-gate/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/lahori-gate/architecture.en.approach.mp3",
+    "durationSec": 35.805,
+    "sentences": [
+      "The west wall of the Fort ends in a projecting bastion at each corner, and each bastion is crowned by a pavilion.",
+      "That is a defensive shape being used decoratively, which is most of what Shah Jahan does here.",
+      "The screen wall in front of you is a barbican, added later by Aurangzeb, and it works by forcing an attacker to turn a corner under fire.",
+      "It also blocks the view straight down the axis, which is why Shah Jahan complained that his son had put a veil on the building.",
+      "The slope below the wall, the glacis, is British and was added after 1857."
+    ],
+    "cues": [
+      0.1,
+      7.224,
+      13.241,
+      22.15,
+      29.608
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "5e3f71aa193fbeaf"
+  },
+  "red-fort/lahori-gate/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/lahori-gate/kids.en.approach.mp3",
+    "durationSec": 18.927,
+    "sentences": [
+      "This is the front door.",
+      "It points towards Lahore, which is why it is called the Lahori Gate.",
+      "The emperor's son built the extra wall in front of it, and his father wrote him a letter saying he had put a veil on the building.",
+      "Every year on the fifteenth of August, somebody stands up there and talks to the whole country."
+    ],
+    "cues": [
+      0.1,
+      2.094,
+      6.533,
+      13.535
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "cba6f4cb31f59b89"
+  },
   "red-fort/chatta-chowk/history.en.approach": {
     "audioUrl": "/audio/red-fort/chatta-chowk/history.en.approach.mp3",
     "durationSec": 33.834,
@@ -45,6 +83,44 @@
     "voice": "en-IN-PrabhatNeural",
     "textHash": "ede3ed1e839318c0"
   },
+  "red-fort/chatta-chowk/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/chatta-chowk/architecture.en.approach.mp3",
+    "durationSec": 29.999,
+    "sentences": [
+      "This is a vaulted arcade, two hundred and thirty feet long and twenty seven wide.",
+      "The vault is doing the structural work, which is why the walls can be opened up into thirty two shop fronts without weakening anything.",
+      "Halfway along, the builders stopped the vault and opened an octagonal court about thirty feet across.",
+      "That opening is the entire lighting and ventilation system for the passage.",
+      "Look at the plaster inside it for what is left of the original painted decoration."
+    ],
+    "cues": [
+      0.1,
+      5.487,
+      13.103,
+      19.883,
+      24.745
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "9d625e3d71737199"
+  },
+  "red-fort/chatta-chowk/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/chatta-chowk/kids.en.approach.mp3",
+    "durationSec": 13.598,
+    "sentences": [
+      "You are in a shopping street with a roof on it.",
+      "There are thirty two little rooms along the sides, and they were shops four hundred years ago.",
+      "They are still shops.",
+      "The hole in the roof in the middle is there to let the light in."
+    ],
+    "cues": [
+      0.1,
+      3.185,
+      8.291,
+      10.124
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "6478147d3f084736"
+  },
   "red-fort/naubat-khana/history.en.approach": {
     "audioUrl": "/audio/red-fort/naubat-khana/history.en.approach.mp3",
     "durationSec": 28.993,
@@ -66,6 +142,44 @@
     ],
     "voice": "en-IN-PrabhatNeural",
     "textHash": "0b83ed09fbe6dff0"
+  },
+  "red-fort/naubat-khana/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/naubat-khana/architecture.en.approach.mp3",
+    "durationSec": 28.707,
+    "sentences": [
+      "A hundred and seven feet long, sixty eight wide, forty nine high, in three storeys.",
+      "The ground floor is a gateway twenty nine feet high and sixteen wide, with double storeyed rooms flanking it.",
+      "The top storey is an open hall of five arched bays, and it is open because it had to carry sound.",
+      "Stairs at the north and south ends reach the upper floors.",
+      "The building is a gate, a guardhouse and a musical instrument at the same time."
+    ],
+    "cues": [
+      0.1,
+      6.08,
+      12.976,
+      19.322,
+      23.516
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "9030e9aa5202d94e"
+  },
+  "red-fort/naubat-khana/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/naubat-khana/kids.en.approach.mp3",
+    "durationSec": 14.244,
+    "sentences": [
+      "This is the drum house.",
+      "Musicians sat in the room at the top and played at certain times of day, so people knew what time it was.",
+      "It was also where you had to get off your elephant.",
+      "Only princes were allowed to ride through."
+    ],
+    "cues": [
+      0.1,
+      2.083,
+      8.408,
+      11.511
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "a9153d4774b0a306"
   },
   "red-fort/diwan-i-aam/history.en.approach": {
     "audioUrl": "/audio/red-fort/diwan-i-aam/history.en.approach.mp3",
@@ -93,6 +207,50 @@
     "voice": "en-IN-PrabhatNeural",
     "textHash": "2573afa8afec34d9"
   },
+  "red-fort/diwan-i-aam/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/diwan-i-aam/architecture.en.approach.mp3",
+    "durationSec": 37.478,
+    "sentences": [
+      "Red sandstone throughout, eighty feet by forty, on a four foot plinth, with the roof parapet about thirty feet above that.",
+      "Inside it is three aisles of seven bays.",
+      "Each bay is four columns carrying an engrailed arch, which is the scalloped profile you can see along the front.",
+      "A deep chhajja, the projecting stone eave, runs along the north, south and west faces and throws the wall into shadow.",
+      "Small chhatris mark the north-west and south-west corners of the roof.",
+      "None of the stone was meant to be seen.",
+      "It was gilded and covered in painted stucco, and all of that is gone."
+    ],
+    "cues": [
+      0.1,
+      7.902,
+      10.889,
+      17.648,
+      25.497,
+      30.063,
+      32.733
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "befdfe2af33ad3f5"
+  },
+  "red-fort/diwan-i-aam/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/diwan-i-aam/kids.en.approach.mp3",
+    "durationSec": 18.344,
+    "sentences": [
+      "This is where the emperor listened to people.",
+      "Anyone could come and ask him for something.",
+      "You stood in the courtyard and waited your turn.",
+      "He sat in that stone box in the middle of the back wall, up above everybody.",
+      "The whole hall used to be gold and painted, not plain red like it is now."
+    ],
+    "cues": [
+      0.1,
+      2.804,
+      5.791,
+      8.672,
+      13.672
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "d152ca5237b9eb4e"
+  },
   "red-fort/rang-mahal/history.en.approach": {
     "audioUrl": "/audio/red-fort/rang-mahal/history.en.approach.mp3",
     "durationSec": 44.036,
@@ -119,6 +277,48 @@
     "voice": "en-IN-PrabhatNeural",
     "textHash": "818891867f98fa54"
   },
+  "red-fort/rang-mahal/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/rang-mahal/architecture.en.approach.mp3",
+    "durationSec": 33.061,
+    "sentences": [
+      "A hundred and fifty three feet north to south by sixty nine east to west, so it is a long hall rather than a square one.",
+      "A main hall with a smaller room closed off at each end.",
+      "A marble channel runs the full length of the floor, and at its centre is a basin cut from one block of Makrana marble, ten feet by nine.",
+      "Cutting a basin that size from a single block is a quarrying problem before it is a carving problem.",
+      "There is a range of rooms underground on the west side, which is how you cool a building in Delhi without machinery."
+    ],
+    "cues": [
+      0.1,
+      7.786,
+      11.747,
+      20.169,
+      26.228
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "73282b8786aae5b8"
+  },
+  "red-fort/rang-mahal/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/rang-mahal/kids.en.approach.mp3",
+    "durationSec": 21.119,
+    "sentences": [
+      "Rang Mahal means the coloured palace, because the inside was painted all over.",
+      "Almost none of the colour is left, so you have to imagine it.",
+      "There is a stream of water running along the floor, and in the middle of it a bowl carved out of one enormous piece of marble.",
+      "The ceiling was silver once.",
+      "Then copper.",
+      "Then wood."
+    ],
+    "cues": [
+      0.1,
+      5.007,
+      9.117,
+      16.035,
+      18.185,
+      19.742
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "f221ff816ff8dabd"
+  },
   "red-fort/khas-mahal/history.en.approach": {
     "audioUrl": "/audio/red-fort/khas-mahal/history.en.approach.mp3",
     "durationSec": 41.949,
@@ -142,6 +342,46 @@
     ],
     "voice": "en-IN-PrabhatNeural",
     "textHash": "c1fe9016d85e7c63"
+  },
+  "red-fort/khas-mahal/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/khas-mahal/architecture.en.approach.mp3",
+    "durationSec": 35.328,
+    "sentences": [
+      "Three linked parts: a room of three bays facing the Diwan-i-Khas, three rooms behind it for sleeping, and a hall alongside at half that width.",
+      "The walls carry an inlaid marble dado, which is stone set into stone rather than paint on plaster.",
+      "The north and south walls of the central room are closed by marble screens cut from single slabs.",
+      "A screen like that has to be carved in place in the plane of the wall, because it cannot be assembled from pieces.",
+      "The one on the north carries a pair of scales over a crescent moon, among stars and clouds."
+    ],
+    "cues": [
+      0.1,
+      9.067,
+      15.709,
+      21.991,
+      29.025
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "c853652216336c42"
+  },
+  "red-fort/khas-mahal/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/khas-mahal/kids.en.approach.mp3",
+    "durationSec": 16.268,
+    "sentences": [
+      "This is where the emperor slept.",
+      "Look at the stone screen in the wall.",
+      "Somebody cut all those holes out of one flat piece of marble by hand.",
+      "There is a picture in it of a weighing scale hanging under a moon.",
+      "That was a promise that he would be fair to people."
+    ],
+    "cues": [
+      0.1,
+      2.412,
+      4.901,
+      9.52,
+      13.174
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "5ea83dfd114d5c15"
   },
   "red-fort/diwan-i-khas/history.en.approach": {
     "audioUrl": "/audio/red-fort/diwan-i-khas/history.en.approach.mp3",
@@ -169,6 +409,48 @@
     "voice": "en-IN-PrabhatNeural",
     "textHash": "f9f92928ae991f17"
   },
+  "red-fort/diwan-i-khas/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/diwan-i-khas/architecture.en.approach.mp3",
+    "durationSec": 31.641,
+    "sentences": [
+      "Ninety feet by sixty seven, on a plinth four and a half feet high.",
+      "The ceiling is flat and it is carried on engrailed arches, so the arches are decorative and the load is going down the piers.",
+      "The lower part of each pier is pietra dura, coloured stone cut to fit sockets chiselled out of the marble.",
+      "The upper parts were gilded and painted instead, because inlay at that height would not be read.",
+      "A marble water channel twelve feet wide runs through the centre of the hall and cools it as it goes."
+    ],
+    "cues": [
+      0.1,
+      4.661,
+      12.605,
+      18.94,
+      25.264
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "c26039874fe24141"
+  },
+  "red-fort/diwan-i-khas/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/diwan-i-khas/kids.en.approach.mp3",
+    "durationSec": 21.776,
+    "sentences": [
+      "This room was only for important visitors.",
+      "There used to be a golden throne here shaped like a peacock, covered in jewels.",
+      "In 1739 a king from Persia took Delhi, took the throne, and carried it away.",
+      "It never came back.",
+      "The coloured flowers on the pillars are not painted.",
+      "Every petal is a piece of stone cut to fit a hole."
+    ],
+    "cues": [
+      0.1,
+      3.185,
+      7.984,
+      13.418,
+      15.293,
+      18.471
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "48e6f1b2e511ca96"
+  },
   "red-fort/hammam/history.en.approach": {
     "audioUrl": "/audio/red-fort/hammam/history.en.approach.mp3",
     "durationSec": 34.3,
@@ -193,6 +475,46 @@
     "voice": "en-IN-PrabhatNeural",
     "textHash": "93716f483a650b41"
   },
+  "red-fort/hammam/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/hammam/architecture.en.approach.mp3",
+    "durationSec": 33.294,
+    "sentences": [
+      "Three main apartments divided by corridors, entered from the side facing the Diwan-i-Khas.",
+      "Everything you would have touched is marble inlaid with coloured stone: the pavements, the reservoirs, the vapour slabs and the walls to waist height.",
+      "The vapour slabs are the point.",
+      "Heat came up through the floor and the stone held it.",
+      "The room facing the river is where clothes came off, and it has three fountain basins, one of them for a rose water spray.",
+      "The window keeps its marble lattice and some of its original coloured glass."
+    ],
+    "cues": [
+      0.1,
+      5.836,
+      14.523,
+      16.949,
+      20.455,
+      28.252
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "75411e46a52ef9cf"
+  },
+  "red-fort/hammam/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/hammam/kids.en.approach.mp3",
+    "durationSec": 13.694,
+    "sentences": [
+      "These were the royal baths.",
+      "Hot steam came up through the floor, and the stone stayed warm.",
+      "One of the fountains squirted rose water instead of ordinary water.",
+      "Keeping it all hot took about four tonnes of firewood."
+    ],
+    "cues": [
+      0.1,
+      2.189,
+      6.098,
+      10.325
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "9f26806f8b9b670a"
+  },
   "red-fort/moti-masjid/history.en.approach": {
     "audioUrl": "/audio/red-fort/moti-masjid/history.en.approach.mp3",
     "durationSec": 32.203,
@@ -216,6 +538,46 @@
     ],
     "voice": "en-IN-PrabhatNeural",
     "textHash": "b248b1fc1bdebef9"
+  },
+  "red-fort/moti-masjid/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/moti-masjid/architecture.en.approach.mp3",
+    "durationSec": 31.567,
+    "sentences": [
+      "Aurangzeb built it in 1659, eleven years after the Fort was finished, for a hundred and sixty thousand rupees.",
+      "It sits inside its own walled enclosure, which is how you fit a mosque into a palace without breaking either.",
+      "The main door is in the east wall and is plated with copper.",
+      "A second passage through the north wall let the women of the household reach it separately.",
+      "The domes are not the originals.",
+      "Those were sheathed in gilded copper, and were lost in 1857."
+    ],
+    "cues": [
+      0.1,
+      7.627,
+      14.449,
+      18.495,
+      23.887,
+      26.419
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "64a1fbc2d9391ef1"
+  },
+  "red-fort/moti-masjid/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/moti-masjid/kids.en.approach.mp3",
+    "durationSec": 14.605,
+    "sentences": [
+      "This is a tiny private mosque, just for the emperor and his family.",
+      "It is called the Pearl Mosque.",
+      "The domes on top used to be covered in shiny gold coloured metal.",
+      "They were broken in a war and these ones are the replacements."
+    ],
+    "cues": [
+      0.1,
+      4.541,
+      6.776,
+      10.961
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "12ce0c3455e49fb9"
   },
   "red-fort/hayat-bakhsh-bagh/history.en.approach": {
     "audioUrl": "/audio/red-fort/hayat-bakhsh-bagh/history.en.approach.mp3",
@@ -243,6 +605,46 @@
     "voice": "en-IN-PrabhatNeural",
     "textHash": "a88bf12922a2fa7b"
   },
+  "red-fort/hayat-bakhsh-bagh/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/hayat-bakhsh-bagh/architecture.en.approach.mp3",
+    "durationSec": 33.199,
+    "sentences": [
+      "A charbagh: the garden is quartered by water channels crossing at the centre, so the plan is a cross.",
+      "The water is structural, not decorative.",
+      "It sets the axes, feeds the planting and cools the air.",
+      "By 1902 all of it was buried under earth, rubble and roads, and the channels had effectively vanished.",
+      "Reconstruction ran from 1904 to 1911 and recovered half the garden.",
+      "The other half was under barracks, which is why the garden you are standing in stops where it does."
+    ],
+    "cues": [
+      0.1,
+      6.472,
+      9.491,
+      13.612,
+      20.953,
+      27.012
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "76119e35b7464998"
+  },
+  "red-fort/hayat-bakhsh-bagh/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/hayat-bakhsh-bagh/kids.en.approach.mp3",
+    "durationSec": 17.454,
+    "sentences": [
+      "This is a garden, and its name means life giving.",
+      "It was built as four squares with water running between them in stone channels.",
+      "Then everyone forgot about it and it got buried under mud and roads.",
+      "People dug it back up about a hundred years ago, but they only found half of it."
+    ],
+    "cues": [
+      0.1,
+      3.376,
+      7.994,
+      12.444
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "91e27c324444c487"
+  },
   "red-fort/mumtaz-mahal/history.en.approach": {
     "audioUrl": "/audio/red-fort/mumtaz-mahal/history.en.approach.mp3",
     "durationSec": 34.163,
@@ -264,5 +666,101 @@
     ],
     "voice": "en-IN-PrabhatNeural",
     "textHash": "ce87e27bd8e946e1"
+  },
+  "red-fort/mumtaz-mahal/architecture.en.approach": {
+    "audioUrl": "/audio/red-fort/mumtaz-mahal/architecture.en.approach.mp3",
+    "durationSec": 33.379,
+    "sentences": [
+      "Eighty eight feet north to south by eighty one feet ten inches east to west, so very nearly square.",
+      "The lower parts of the walls and piers are marble and the rest was painted and glazed decoration, traces of which have been uncovered.",
+      "The gilded chhatris that stood at the four corners of the roof are gone.",
+      "Much of what you see is a repair from 1911, including the chhajja, the projecting stone eave.",
+      "It has been a palace apartment, a prison, a sergeants mess and a museum, and the fabric shows all four."
+    ],
+    "cues": [
+      0.1,
+      7.002,
+      15.55,
+      20.074,
+      26.408
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "f3ac3d76932d49bd"
+  },
+  "red-fort/mumtaz-mahal/kids.en.approach": {
+    "audioUrl": "/audio/red-fort/mumtaz-mahal/kids.en.approach.mp3",
+    "durationSec": 15.622,
+    "sentences": [
+      "The women of the emperor's family lived in this building.",
+      "The bottom of the walls is marble and the rest was painted.",
+      "There were little gold domes on the corners of the roof once.",
+      "Afterwards it was a prison, then a room for soldiers, and now it is a museum."
+    ],
+    "cues": [
+      0.1,
+      3.439,
+      7.041,
+      10.59
+    ],
+    "voice": "en-IN-NeerjaNeural",
+    "textHash": "24c0fc5ad325f0fa"
+  },
+  "red-fort/diwan-i-aam/history.en.inside": {
+    "audioUrl": "/audio/red-fort/diwan-i-aam/history.en.inside.mp3",
+    "durationSec": 18.983,
+    "sentences": [
+      "You are inside now.",
+      "Count the columns in one bay.",
+      "There are four, and they carry one engrailed arch.",
+      "Seven of those bays make an aisle, and there are three aisles.",
+      "The recess in the east wall is where the throne stood, and the panels around it are Florentine pietra dura."
+    ],
+    "cues": [
+      0.1,
+      1.949,
+      4.3,
+      8.061,
+      12.499
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "173c0812681a8571"
+  },
+  "red-fort/rang-mahal/history.en.inside": {
+    "audioUrl": "/audio/red-fort/rang-mahal/history.en.inside.mp3",
+    "durationSec": 13.781,
+    "sentences": [
+      "Stand over the channel in the floor.",
+      "Water ran along it the whole length of the hall and into the basin at the centre.",
+      "There are rooms underneath the west side of this building.",
+      "They were the cool ones."
+    ],
+    "cues": [
+      0.1,
+      2.669,
+      7.934,
+      11.822
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "abf46756a8ce7994"
+  },
+  "red-fort/diwan-i-khas/history.en.inside": {
+    "audioUrl": "/audio/red-fort/diwan-i-khas/history.en.inside.mp3",
+    "durationSec": 16.843,
+    "sentences": [
+      "Look up.",
+      "The ceiling is flat, and the arches around you are carrying it.",
+      "The dais where the peacock throne stood is the raised marble in the middle.",
+      "Run your eye along the bottom of a pier.",
+      "Each coloured petal is a separate cut stone sitting in a socket."
+    ],
+    "cues": [
+      0.1,
+      1.25,
+      5.391,
+      9.872,
+      12.786
+    ],
+    "voice": "en-IN-PrabhatNeural",
+    "textHash": "cbea6e033532f47d"
   }
 }

@@ -10,7 +10,16 @@ import { initialState, prepare, step, type TriggerStatus } from "@/lib/location/
 import { moveBy } from "@/lib/location/geometry";
 import { planRoute } from "@/lib/route/planner";
 import { PLAN_KEY } from "../plan/plan-form";
-import type { Coord, FactSheet, HeritagePoint, HeritageSite, InterestTag, Narration, Persona } from "@/lib/types";
+import type {
+  Coord,
+  FactSheet,
+  HeritagePoint,
+  HeritageSite,
+  InterestTag,
+  Narration,
+  NarrationKind,
+  Persona,
+} from "@/lib/types";
 
 interface Plan {
   interests: InterestTag[];
@@ -75,7 +84,7 @@ export default function Tour({
   const [statuses, setStatuses] = useState<TriggerStatus[]>([]);
   const [selected, setSelected] = useState<HeritagePoint>(points[0]);
   // what is being said, which is not the same as what the panel is showing
-  const [speakingId, setSpeakingId] = useState<string | null>(null);
+  const [speaking, setSpeaking] = useState<{ pointId: string; kind: NarrationKind } | null>(null);
   const [showEvidence, setShowEvidence] = useState(false);
   const [started, setStarted] = useState(false);
 
@@ -84,7 +93,10 @@ export default function Tour({
   if (walkId.current === "") walkId.current = `w_${Math.random().toString(36).slice(2, 10)}`;
   const [unsent, setUnsent] = useState(0);
   const narration = narrations.find(
-    (n) => n.pointId === (speakingId ?? selected.id) && n.persona === persona,
+    (n) =>
+      n.pointId === (speaking?.pointId ?? selected.id) &&
+      n.persona === persona &&
+      n.kind === (speaking?.kind ?? "approach"),
   );
   const factSheet = factSheets.find((f) => f.pointId === selected.id);
 
@@ -94,9 +106,9 @@ export default function Tour({
     setStatuses(result.statuses);
 
     // a Narration runs until the Visitor walks out of that Heritage Point's ring
-    if (speakingId && !result.statuses.find((s) => s.pointId === speakingId)?.inRing) {
+    if (speaking && !result.statuses.find((s) => s.pointId === speaking.pointId)?.inRing) {
       audio.current?.pause();
-      setSpeakingId(null);
+      setSpeaking(null);
     }
 
     const crossing = result.crossings[0];
@@ -104,7 +116,7 @@ export default function Tour({
     const point = routePoints.find((p) => p.id === crossing.pointId);
     if (!point) return;
     setSelected(point);
-    setSpeakingId(point.id);
+    setSpeaking({ pointId: point.id, kind: crossing.kind });
     setShowEvidence(false);
 
     // fire and forget. if the log is unreachable the Walk carries on and the count says so
@@ -125,13 +137,13 @@ export default function Tour({
         if (!r.stored) setUnsent((n) => n + 1);
       })
       .catch(() => setUnsent((n) => n + 1));
-  }, [fix, prepared, routePoints, started, speakingId, site.id, persona]);
+  }, [fix, prepared, routePoints, started, speaking, site.id, persona]);
 
   // the element reloads when src changes, so playback can only start after that has landed
   useEffect(() => {
-    if (speakingId === null) return;
+    if (speaking === null) return;
     audio.current?.play().catch(() => undefined);
-  }, [speakingId, narration?.audioUrl]);
+  }, [speaking, narration?.audioUrl]);
 
   useEffect(() => {
     if (routePoints.length > 0 && !routePoints.some((p) => p.id === selected.id)) {
@@ -218,7 +230,7 @@ export default function Tour({
               type="button"
               onClick={() => {
                 setSelected(point);
-                setSpeakingId(null);
+                setSpeaking(null);
                 setShowEvidence(false);
               }}
               className={`border px-3 py-1.5 text-sm ${
